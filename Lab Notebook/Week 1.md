@@ -1,6 +1,5 @@
 # Week One
 
-**2021.02.22 Mon**
 
 Reading List:
 
@@ -8,10 +7,10 @@ Reading List:
 
 - [Rank products: a simple, yet powerful, new method to detect differentially regulated genes in replicated microarray experiments](https://febs.onlinelibrary.wiley.com/doi/full/10.1016/j.febslet.2004.07.055)
 
-**2021.02.23 Tue**
+- [Single-Cell Transcriptomic Analysis of Cardiac Differentiation from Human PSCs Reveals HOPX- Dependent Cardiomyocyte Maturation](https://linkinghub.elsevier.com/retrieve/pii/S1934590918304466)
 
 
-zoom meeting with Mikael:
+zoom meeting with Mikael (2021.02.23 Tue) :
 
 - Weekly meeting on Tuesday at 2pm Brisbane time
 - aims on "how peak-caller works on scATAC-seq data"
@@ -20,7 +19,4 @@ zoom meeting with Mikael:
 - next week:
   - review papers on scATAC-seq
   - find public scATAC datasets at the beginning (scATAC at developmental stage/one-time points/one-tissue/fully differentiated....)
-
-Reading List:
-- [Single-Cell Transcriptomic Analysis of Cardiac Differentiation from Human PSCs Reveals HOPX- Dependent Cardiomyocyte Maturation](https://linkinghub.elsevier.com/retrieve/pii/S1934590918304466)
  
