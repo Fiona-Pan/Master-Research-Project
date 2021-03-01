@@ -19,8 +19,45 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 - project aims on "how peak-caller works on scATAC-seq data"
 - general method on the project: define problems => find approaches to solve problems (make hypothesis) => do analysis
 
-- next week:
-  - review papers on scATAC-seq
-  - find public scATAC datasets at the beginning (scATAC at developmental stage/one-time points/one-tissue/fully differentiated....)
- 
+
+**Dataset:**
+
+- public dataset from 10X Genomics: [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor](https://support.10xgenomics.com/single-cell-atac/datasets/1.2.0/atac_v1_pbmc_5k)
+
+**scATAC-seq analysis tools:**
+
+- [Signac](https://satijalab.org/signac/index.html)
+- [MAESTRO](https://liulab-dfci.github.io/MAESTRO/example/ATAC_infrastructure_10x/ATAC_infrastructure_10x.html)
+- [Sinto](https://timoast.github.io/sinto/index.html)
+- [Cell Ranger]()
+- [Sinto](https://timoast.github.io/sinto/index.html)
+
+
+**Analysis Pipeline:**
+
+1. Data Processing:
+
+- FASTQs &rarr; Trimming & Filtering &rarr; BAM, fragments.txt
+
+  Download Data:
+  ```
+  wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
+  
+  ```
+
+
+2. Downstream Analysis:
+
+
+**Dependencies**
+
+Programming Languages:
+
+- R
+- Python
+
+Software Packages:
+
+- 
+
 
