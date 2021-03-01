@@ -47,6 +47,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
 
+  - output: atac_v1_pbmc_5k_S1_L001_I1_001.fastq.gz   atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz   atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz
+            atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_I1_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_R1_001.fastq.gz
+            atac_v1_pbmc_5k_S1_L002_R2_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz
   
   Quality Controll:
 
