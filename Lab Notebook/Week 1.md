@@ -46,20 +46,20 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
-    - --create (-c) - Create a new tar archive. 
-  
-    - --verbose (-v) - Show the files being processed by the tar command. 
-  
-    - --file=archive=name (-f archive-name) - Specifies the archive file name.
+  - --create (-c) - Create a new tar archive. 
+
+  - --verbose (-v) - Show the files being processed by the tar command. 
+
+  - --file=archive=name (-f archive-name) - Specifies the archive file name.
 
   
   Quality Controll:
 
-    - input: .fastq.gz
-    - output: .trimmed.fastq.gz
-    - trimming sequencing adapters
-    - eliminating poor quality reads
-    - FastQC, trimmomatic, and BWA-MEM
+  - input: .fastq.gz
+  - output: .trimmed.fastq.gz
+  - trimming sequencing adapters
+  - eliminating poor quality reads
+  - FastQC, trimmomatic, and BWA-MEM
 
   ```
   #
@@ -67,10 +67,10 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   Reads Mapping:
     
-    - input: .trammed.fastq.gz
-    - output: .sam
-    - reference genome: hg19
-    - BWA MEM, Bowtie, STAR (faster, more accurate)
+  - input: .trammed.fastq.gz
+  - output: .sam
+  - reference genome: hg19
+  - BWA MEM, Bowtie, STAR (faster, more accurate)
     
     
   ```
@@ -85,9 +85,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   
   Remove duplicated reads:
    
-    - input:
-    - output:
-    - Picard
+  - input:
+  - output:
+  - Picard
 
   ```
   
@@ -95,10 +95,10 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   Convert into BAM file, sort and index:
   
-    - input: .sam
-    - output: .bam
-    - SAMTOOLS (sort, index, flagstat, view)
-    - ?Generate and add unique barcodes for each single cell sample to sam files
+  - input: .sam
+  - output: .bam
+  - SAMTOOLS (sort, index, flagstat, view)
+  - ?Generate and add unique barcodes for each single cell sample to sam files
 
 
   ```
@@ -107,9 +107,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   
    Create fragment file:
    
-    - input: .bam
-    - output: .fragments.bed
-    - sinto fragments / cellranger-atac count
+  - input: .bam
+  - output: .fragments.bed
+  - sinto fragments / cellranger-atac count
 
   ```
 
@@ -117,9 +117,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     
   Peak Calling:
     
-    - input:
-    - output:
-    - Genrich / MACS2
+  - input:
+  - output:
+  - Genrich / MACS2
 
   ```
 
@@ -127,9 +127,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     
   Access reproducibility of final peaks:
     
-    - input:
-    - output:
-    - Chip-R
+  - input:
+  - output:
+  - Chip-R
 
   ```
 
