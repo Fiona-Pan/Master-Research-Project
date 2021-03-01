@@ -33,26 +33,114 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 - [Sinto](https://timoast.github.io/sinto/index.html)
 - [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/installation)
 - [ArchR](https://www.archrproject.com/bookdown/getting-started-with-archr.html)
+- [snapshot](https://github.com/znavidi/scATAC-seq-analysis-pipeline)
 
 
 **Analysis Pipeline:**
 
 1. Data Processing:
 
-- FASTQs &rarr; Trimming & Filtering &rarr; BAM, fragments.txt
-
   Download Data:
   ```
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
-  --create (-c) - Create a new tar archive. 
+    - --create (-c) - Create a new tar archive. 
   
-  --verbose (-v) - Show the files being processed by the tar command. 
+    - --verbose (-v) - Show the files being processed by the tar command. 
   
-  --file=archive=name (-f archive-name) - Specifies the archive file name.
+    - --file=archive=name (-f archive-name) - Specifies the archive file name.
 
+  
+  Quality Controll:
+
+    - input: .fastq.gz
+    - output: .trimmed.fastq.gz
+    - trimming sequencing adapters
+    - eliminating poor quality reads
+    - FastQC, trimmomatic, and BWA-MEM
+
+    ```
+    #
+    ```
+
+  Reads Mapping:
+    
+    - input: .trammed.fastq.gz
+    - output: .sam
+    - reference genome: hg19
+    - BWA MEM, Bowtie, STAR (faster, more accurate)
+    
+    ```
+    # hg10 human reference genome
+    wget https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
+    gzip -d hg19.fa.gz
+    bwa index hg19.fa
+    
+    # reads maping
+    
+    ```
+  
+  Remove duplicated reads:
+   
+    - input:
+    - output:
+    - Picard
+
+  ```
+  
+  ```
+
+  Convert into BAM file, sort and index:
+  
+    - input: .sam
+    - output: .bam
+    - SAMTOOLS (sort, index, flagstat, view)
+    - ?Generate and add unique barcodes for each single cell sample to sam files
+
+
+    ```
+    
+    ```
+  
+   Create fragment file:
+   
+    - input: .bam
+    - output: .fragments.bed
+    - sinto fragments / cellranger-atac count
+
+    ```
+    
+    ```
+    
+  Peak Calling:
+    
+    - input:
+    - output:
+    - Genrich / MACS2
+
+    ```
+    
+    ```
+    
+  Access reproducibility of final peaks:
+    
+    - input:
+    - output:
+    - Chip-R
+
+    ```
+    
+    ```
+   
+  
 2. Downstream Analysis:
+
+
+
+
+
+
 
 
 **Dependencies**
