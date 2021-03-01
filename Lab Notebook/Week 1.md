@@ -13,6 +13,8 @@ Reading List:
 
 - [Profiling Chromatin Accessibility at Single-cell Resolution](https://www.sciencedirect.com/science/article/pii/S1672022921000115?via%3Dihub)
 
+- [Massively parallel single-cell chromatin landscapes of human immune cell development and intratumoral T cell exhaustion. Nature Biotechnology](https://www.nature.com/articles/s41587-019-0206-z)
+
 zoom meeting with Mikael (2021.02.23 Tue) :
 
 - Weekly meeting on Tuesday at 2pm Brisbane time
@@ -29,8 +31,8 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 - [Signac](https://satijalab.org/signac/index.html)
 - [MAESTRO](https://liulab-dfci.github.io/MAESTRO/example/ATAC_infrastructure_10x/ATAC_infrastructure_10x.html)
 - [Sinto](https://timoast.github.io/sinto/index.html)
-- [Cell Ranger]()
-- [Sinto](https://timoast.github.io/sinto/index.html)
+- [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/installation)
+- [ArchR](https://www.archrproject.com/bookdown/getting-started-with-archr.html)
 
 
 **Analysis Pipeline:**
@@ -42,9 +44,13 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   Download Data:
   ```
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
-  
+  tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
-
+  --create (-c) - Create a new tar archive. 
+  
+  --verbose (-v) - Show the files being processed by the tar command. 
+  
+  --file=archive=name (-f archive-name) - Specifies the archive file name.
 
 2. Downstream Analysis:
 
