@@ -41,6 +41,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 1. Data Processing:
 
   Download Data:
+  
   ```
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
@@ -60,9 +61,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - eliminating poor quality reads
     - FastQC, trimmomatic, and BWA-MEM
 
-    ```
-    #
-    ```
+  ```
+  #
+  ```
 
   Reads Mapping:
     
@@ -71,15 +72,16 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - reference genome: hg19
     - BWA MEM, Bowtie, STAR (faster, more accurate)
     
-    ```
-    # hg10 human reference genome
-    wget https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
-    gzip -d hg19.fa.gz
-    bwa index hg19.fa
     
-    # reads maping
-    
-    ```
+  ```
+  # hg10 human reference genome
+  wget https://hgdownload.soe.ucsc.edu/goldenPath/hg19/bigZips/hg19.fa.gz
+  gzip -d hg19.fa.gz
+  bwa index hg19.fa
+
+  # reads maping
+
+  ```
   
   Remove duplicated reads:
    
@@ -99,9 +101,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - ?Generate and add unique barcodes for each single cell sample to sam files
 
 
-    ```
-    
-    ```
+  ```
+
+  ```
   
    Create fragment file:
    
@@ -109,9 +111,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - output: .fragments.bed
     - sinto fragments / cellranger-atac count
 
-    ```
-    
-    ```
+  ```
+
+  ```
     
   Peak Calling:
     
@@ -119,9 +121,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - output:
     - Genrich / MACS2
 
-    ```
-    
-    ```
+  ```
+
+  ```
     
   Access reproducibility of final peaks:
     
@@ -129,9 +131,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     - output:
     - Chip-R
 
-    ```
-    
-    ```
+  ```
+
+  ```
    
   
 2. Downstream Analysis:
