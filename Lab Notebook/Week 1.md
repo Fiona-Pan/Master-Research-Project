@@ -47,20 +47,44 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
 
-  - output: atac_v1_pbmc_5k_S1_L001_I1_001.fastq.gz   atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz   atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz
-            atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_I1_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_R1_001.fastq.gz
-            atac_v1_pbmc_5k_S1_L002_R2_001.fastq.gz   atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz
+  - output: atac_v1_pbmc_5k_S1_L001_I1_001.fastq.gz   
+            atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz   
+            atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz
+            atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz   
+            atac_v1_pbmc_5k_S1_L002_I1_001.fastq.gz   
+            atac_v1_pbmc_5k_S1_L002_R1_001.fastq.gz
+            atac_v1_pbmc_5k_S1_L002_R2_001.fastq.gz   
+            atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz
+  - I1 is the 8 bp sample barcode, 
+  - R1 is the forward read, 
+  - R2 is the 16 bp 10x feature barcode and 
+  - R3 is the reverse read
+  - <ins>Question: Merge two lanes before QC/Reads Mapping or after?</ins>
+  - <ins>Question: Need to add cell barcodes? (add R2 on R1 and R3)</ins>
+
+
+  Attach cell barcodes:
+  
+  - input: fastq.gz
+  - output: barcoded.fastq.gz
+  - [sinto](https://timoast.github.io/sinto/index.html)
+
+  
+  ```
+  sinto barcode -b 12 --barcode_fastq atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz \
+  --read1 atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz \
+  --read2 atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz 
+  ```
+
   
   Quality Controll:
 
   - input: .fastq.gz
   - output: .trimmed.fastq.gz
-  - trimming sequencing adapters
-  - eliminating poor quality reads
   - FastQC, trimmomatic, and BWA-MEM
 
   ```
-  #
+  ls *gz | while read id; do fastqc -o fastqc $id; done
   ```
 
   Reads Mapping:
@@ -125,9 +149,9 @@ zoom meeting with Mikael (2021.02.23 Tue) :
     
   Access reproducibility of final peaks:
     
-  - input:
-  - output:
-  - Chip-R
+  - input: .bed
+  - output: .bed
+  - [Chip-R](https://github.com/rhysnewell/ChIP-R/)
 
   ```
 
