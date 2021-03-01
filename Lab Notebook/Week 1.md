@@ -46,11 +46,6 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
   tar -cvf atac_v1_pbmc_5k_fastqs.tar  
   ```
-  - --create (-c) - Create a new tar archive. 
-
-  - --verbose (-v) - Show the files being processed by the tar command. 
-
-  - --file=archive=name (-f archive-name) - Specifies the archive file name.
 
   
   Quality Controll:
