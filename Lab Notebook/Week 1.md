@@ -57,7 +57,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
             atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz
   - I1 is the 8 bp sample barcode, 
   - R1 is the forward read, 
-  - R2 is the 16 bp 10x feature barcode and 
+  - [R2 is the 16 bp 10x feature barcode](https://divingintogeneticsandgenomics.rbind.io/post/understand-10x-scrnaseq-and-scatac-fastqs/)
   - R3 is the reverse read
   - <ins>Question: Merge two lanes before QC/Reads Mapping or after?</ins>
   - <ins>Question: Need to add cell barcodes? (add R2 on R1 and R3)</ins>
