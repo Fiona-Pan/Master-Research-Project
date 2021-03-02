@@ -158,10 +158,19 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   ```
 
   ```
+  
+  - consider cell populations
+    - group cels by cell types
+    - refine cell-type-specific-peaks
    
   
 #### 2. Downstream Analysis:
 
+  - dimension reduction
+  - clustering
+  - differential accessbility
+  - identification of cells
+  - biological insights
 
 
 
