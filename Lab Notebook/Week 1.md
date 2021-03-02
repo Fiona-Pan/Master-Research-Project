@@ -1,7 +1,7 @@
 # Week One
 
 
-Reading List:
+### Reading List:
 
 - [ChIP-R: Assembling reproducible sets of ChIP-seq and ATAC-seq peaks from multiple replicates](https://www.biorxiv.org/content/10.1101/2020.11.24.396960v1.supplementary-material)
 
@@ -22,11 +22,11 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 - general method on the project: define problems => find approaches to solve problems (make hypothesis) => do analysis
 
 
-**Dataset:**
+### **Dataset:**
 
 - public dataset from 10X Genomics: [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor](https://support.10xgenomics.com/single-cell-atac/datasets/1.2.0/atac_v1_pbmc_5k)
 
-**scATAC-seq analysis tools:**
+### **scATAC-seq analysis tools:**
 
 - [Signac](https://satijalab.org/signac/index.html)
 - [MAESTRO](https://liulab-dfci.github.io/MAESTRO/example/ATAC_infrastructure_10x/ATAC_infrastructure_10x.html)
@@ -36,11 +36,11 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 - [snapshot](https://github.com/znavidi/scATAC-seq-analysis-pipeline)
 
 
-**Analysis Pipeline:**
+### **Analysis Pipeline:**
 
-1. Data Processing:
+#### 1. Data Processing:
 
-  Download Data:
+##### Download Data:
   
   ```
   wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
@@ -63,7 +63,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   - <ins>Question: Need to add cell barcodes? (add R2 on R1 and R3)</ins>
 
 
-  Attach cell barcodes:
+##### Attach cell barcodes:
   
   - input: fastq.gz
   - output: barcoded.fastq.gz
@@ -77,7 +77,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   ```
 
   
-  Quality Controll:
+##### Quality Controll:
 
   - input: .fastq.gz
   - output: .trimmed.fastq.gz
@@ -87,7 +87,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   ls *gz | while read id; do fastqc -o fastqc $id; done
   ```
 
-  Reads Mapping:
+##### Reads Mapping:
     
   - input: .trammed.fastq.gz
   - output: .sam
@@ -105,7 +105,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   ```
   
-  Remove duplicated reads:
+##### Remove duplicated reads:
    
   - input:
   - output:
@@ -115,7 +115,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   
   ```
 
-  Convert into BAM file, sort and index:
+##### Convert into BAM file, sort and index:
   
   - input: .sam
   - output: .bam
@@ -127,7 +127,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   ```
   
-   Create fragment file:
+##### Create fragment file:
    
   - input: .bam
   - output: .fragments.bed
@@ -137,7 +137,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   ```
     
-  Peak Calling:
+##### Peak Calling:
     
   - input:
   - output:
@@ -147,7 +147,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
   ```
     
-  Access reproducibility of final peaks:
+##### Access reproducibility of final peaks:
     
   - input: .bed
   - output: .bed
@@ -158,7 +158,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   ```
    
   
-2. Downstream Analysis:
+#### 2. Downstream Analysis:
 
 
 
@@ -167,7 +167,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
 
 
 
-**Dependencies**
+### **Dependencies**
 
 Programming Languages:
 
