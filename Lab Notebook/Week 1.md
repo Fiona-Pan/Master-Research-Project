@@ -1,5 +1,11 @@
 # Week One
 
+zoom meeting with Mikael (2021.02.23 Tue) :
+
+- Weekly meeting on Tuesday at 2pm Brisbane time
+- project aims on "how peak-caller works on scATAC-seq data"
+- general method on the project: define problems => find approaches to solve problems (make hypothesis) => do analysis
+
 
 ### Reading List:
 
@@ -15,11 +21,6 @@
 
 - [Massively parallel single-cell chromatin landscapes of human immune cell development and intratumoral T cell exhaustion. Nature Biotechnology](https://www.nature.com/articles/s41587-019-0206-z)
 
-zoom meeting with Mikael (2021.02.23 Tue) :
-
-- Weekly meeting on Tuesday at 2pm Brisbane time
-- project aims on "how peak-caller works on scATAC-seq data"
-- general method on the project: define problems => find approaches to solve problems (make hypothesis) => do analysis
 
 
 ### **Dataset:**
