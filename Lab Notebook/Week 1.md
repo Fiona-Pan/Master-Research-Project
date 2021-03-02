@@ -69,6 +69,7 @@ zoom meeting with Mikael (2021.02.23 Tue) :
   - input: fastq.gz
   - output: barcoded.fastq.gz
   - [sinto](https://timoast.github.io/sinto/index.html)
+  > Storing the cell barcode in the read name is an easy way to track which reads came from which cells
 
   
   ```
