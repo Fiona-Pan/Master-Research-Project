@@ -1,6 +1,6 @@
 # Week One
 
-zoom meeting with Mikael (2021.02.23 Tue) :
+zoom meeting (2021.02.23 Tue) :
 
 - Weekly meeting on Tuesday at 2pm Brisbane time
 - project aims on "how peak-caller works on scATAC-seq data"
