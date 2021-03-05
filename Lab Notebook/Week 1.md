@@ -61,6 +61,7 @@ zoom meeting (2021.02.23 Tue) :
   - [R2 is the 16 bp 10x feature barcode](https://divingintogeneticsandgenomics.rbind.io/post/understand-10x-scrnaseq-and-scatac-fastqs/)
   - R3 is the reverse read
   - <ins>Question: Merge two lanes before QC/Reads Mapping or after?</ins>
+    -  merge them when they are at the Bam file level (so after the fragments have been mapped to the genome)
   - <ins>Question: Need to add cell barcodes? (add R2 on R1 and R3)</ins>
 
 
