@@ -31,13 +31,7 @@ Zoom Meeting (2020.03.02 Tue):
  - [Lei.X el al, 2019](https://www.nature.com/articles/s41467-019-12630-7) each open chromatin site of a diploid-genome single cell only has one or two opportunities to be captured. Normally, only a few thousand distinct reads (versus many thousands of possible open positions) are obtained per cell, thus resulting in many bona fide open chromatin sites of the cell that lack sequencing data signals (i.e., peaks). The analysis of scATAC-seq data hence suffers from the curse of “missingness” in addition to high dimensionality
    - chromVAR: only analyzes peaks in groups and lacks the resolution of individual peaks
    - scABC: heavily depends on landmark samples with high sequencing depths, and the Spearman rank can be ill-defined for data with many missing values
- -[Shaoqian.M et al, 2019](https://link.springer.com/article/10.1186/s43556-020-00009-w) not being able to identify rare peaks appearing only in scarce populations. One major limitation to current scATAC-seq approaches is that they capture only a subset of the open chromatin sites in single cells, a lot of sites may be lost or not detectable during both experimental and computational procedures
-
-
-
-
-### Limitations of ChIP-R on scATAC-seq data
-
+ - [Shaoqian.M et al, 2019](https://link.springer.com/article/10.1186/s43556-020-00009-w) not being able to identify rare peaks appearing only in scarce populations. One major limitation to current scATAC-seq approaches is that they capture only a subset of the open chromatin sites in single cells, a lot of sites may be lost or not detectable during both experimental and computational procedures
 
 
 
