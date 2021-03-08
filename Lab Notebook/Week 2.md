@@ -15,12 +15,13 @@ Zoom Meeting (2020.03.02 Tue):
 
 - [Unsupervised clustering and epigenetic classification of single cells](https://www.nature.com/articles/s41467-018-04629-3)
 - [Profiling chromatin regulatory landscape: insights into the development of ChIP-seq and ATAC-seq](https://link.springer.com/article/10.1186/s43556-020-00009-w)
-
-
+- [Single-cell ATAC sequencing analysis: From data preprocessing to hypothesis generation](https://www.sciencedirect.com/science/article/pii/S2001037020303019?via%3Dihub)
 
 
 ### Limitations on current scATAC-seq processing
  - [Huidong.C et al 2019](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1854-5) scATAC-seq experiments sample DNA, which, due to low copy numbers (diploid in humans), lead to inherent data sparsity (1–10% of peaks detected per cell) compared to transcriptomic (scRNA-seq) data (10–45% of expressed genes detected per cell).
+    - only ~ 18% of cell type-specific peaks from very rare (1% prevalence) or ~ 40% from rare (5% prevalence) cell populations were de- tected when peaks were called when treating the heterogenous source as a synthetic bulk experiment.
+    - cell populations may be underrep- resented in quality-controlled datasets
  - minor subpopulations are hard to detect unless deeper sequencing is performed.
  - complicated bioinformatic analysis on analyzing cell sequencing tracks individually and identify different clusters
  - going deeper into transcriptional mechanisms in individual cells will highlight potential therapeutic targets that are currently unknown
