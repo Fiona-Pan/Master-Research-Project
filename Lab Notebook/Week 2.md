@@ -14,6 +14,7 @@ Zoom Meeting (2020.03.02 Tue):
 ### Reading List
 
 - [Unsupervised clustering and epigenetic classification of single cells](https://www.nature.com/articles/s41467-018-04629-3)
+- [Profiling chromatin regulatory landscape: insights into the development of ChIP-seq and ATAC-seq](https://link.springer.com/article/10.1186/s43556-020-00009-w)
 
 
 
