@@ -105,7 +105,7 @@ zoom meeting (2021.02.23 Tue) :
   bwa index hg19.fa
 
   # reads maping
-
+  bwa mem -t 8 ../hg19_reference/hg19.fa atac_v1_pbmc_5k_S1_R1_001.barcoded.fastq.gz atac_v1_pbmc_5k_S1_R3_001.barcoded.fastq.gz| samtools view -b - > atac_v1_pbmc_5k_S1_aln.bam
   ```
   
 ##### Remove duplicated reads:
@@ -127,7 +127,8 @@ zoom meeting (2021.02.23 Tue) :
 
 
   ```
-
+  samtools sort -@ 12 atac_v1_pbmc_5k_S1_aln.bam -o atac_v1_pbmc_5k_S1_aln.sorted.bam
+  samtools index -@ 12 atac_v1_pbmc_5k_S1_aln.sorted.bam
   ```
   
 ##### Create fragment file:
@@ -137,7 +138,7 @@ zoom meeting (2021.02.23 Tue) :
   - sinto fragments / cellranger-atac count
 
   ```
-
+  sinto fragments -b atac_v1_pbmc_5k_S1_aln.sorted.bam -p 8 -f ../4_Fragment/atac_v1_pbmc_5k_S1_fragments.bed --barcode_regex "[^:]*"
   ```
     
 ##### Peak Calling:
@@ -147,7 +148,7 @@ zoom meeting (2021.02.23 Tue) :
   - Genrich / MACS2
 
   ```
-
+  macs2 callpeak -t atac_v1_pbmc_5k_S1_L001_aln.sorted.bam -p 1e-3 --nolambda --nomodel -n atac_v1_pbmc_5k_S1_L001_peak --outdir ../5_CallPeaks
   ```
     
 ##### Access reproducibility of final peaks:
@@ -172,22 +173,5 @@ zoom meeting (2021.02.23 Tue) :
   - differential accessbility
   - identification of cells
   - biological insights
-
-
-
-
-
-
-
-### **Dependencies**
-
-Programming Languages:
-
-- R
-- Python
-
-Software Packages:
-
-- 
 
 
