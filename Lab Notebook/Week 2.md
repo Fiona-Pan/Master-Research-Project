@@ -11,6 +11,13 @@ Zoom Meeting (2020.03.02 Tue):
   - cell clustering and visualization
   - access reproducibility of peaks
 
+### Reading List
+
+- 
+
+
+
+
 ### Limitations on current scATAC-seq processing
 
 
