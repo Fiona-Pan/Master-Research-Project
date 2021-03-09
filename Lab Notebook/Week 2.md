@@ -39,6 +39,7 @@ Zoom Meeting (2020.03.02 Tue):
 
 - review and adapt ChIP-R on scATAC-seq datasets for reproducible peaks at single-cell level, and find biological insights of accessible peaks by cell types to capture cell heterogeneity
 - validate robustness: perform rank-product statistics on reproducibility of 100, 500, 1000 vs. all cells from different clusters and re-perform the analysis (do we still get the same cluster)
+- assessment on ChIP-R and avoid overfitting: (Can we?) cross validation, randomly sample cells/replicates as inputs as test group, assign scores and determine coefficients
 
 
 
