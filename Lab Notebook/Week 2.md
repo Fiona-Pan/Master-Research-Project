@@ -37,9 +37,9 @@ Zoom Meeting (2020.03.02 Tue):
 
 ## Project Aim
 
-- review and adapt ChIP-R on scATAC-seq datasets for reproducible peaks at single-cell level, and find biological insights of reproducible peaks on scATAC-seq analysis to capture cell heterogeneity
+- review and adapt ChIP-R on scATAC-seq datasets for reproducible peaks at single-cell level, and find biological insights of accessible peaks by cell types to capture cell heterogeneity
 - validate robustness: perform rank-product statistics on reproducibility of 100, 500, 1000 vs. all cells from different clusters and re-perform the analysis (do we still get the same cluster)
-- 
+
 
 
 
