@@ -20,8 +20,8 @@ Zoom Meeting (2020.03.02 Tue):
 
 ### Limitations on current scATAC-seq processing
  - [Huidong.C et al 2019](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1854-5) scATAC-seq experiments sample DNA, which, due to low copy numbers (diploid in humans), lead to inherent data sparsity (1–10% of peaks detected per cell) compared to transcriptomic (scRNA-seq) data (10–45% of expressed genes detected per cell).
-    - only ~ 18% of cell type-specific peaks from very rare (1% prevalence) or ~ 40% from rare (5% prevalence) cell populations were de- tected when peaks were called when treating the heterogenous source as a synthetic bulk experiment.
-    - cell populations may be underrep- resented in quality-controlled datasets
+    - only ~ 18% of cell type-specific peaks from very rare (1% prevalence) or ~ 40% from rare (5% prevalence) cell populations were detected when peaks were called when treating the heterogenous source as a synthetic bulk experiment.
+    - cell populations may be underrepresented in quality-controlled datasets
  - minor subpopulations are hard to detect unless deeper sequencing is performed.
  - complicated bioinformatic analysis on analyzing cell sequencing tracks individually and identify different clusters
  - going deeper into transcriptional mechanisms in individual cells will highlight potential therapeutic targets that are currently unknown
