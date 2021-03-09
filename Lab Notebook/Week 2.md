@@ -35,5 +35,11 @@ Zoom Meeting (2020.03.02 Tue):
  - [Shaoqian.M et al, 2019](https://link.springer.com/article/10.1186/s43556-020-00009-w) not being able to identify rare peaks appearing only in scarce populations. One major limitation to current scATAC-seq approaches is that they capture only a subset of the open chromatin sites in single cells, a lot of sites may be lost or not detectable during both experimental and computational procedures
 
 
+## Project Aim
+
+- review and adapt ChIP-R on scATAC-seq datasets for reproducible peaks at single-cell level, and find biological insights of reproducible peaks on scATAC-seq analysis to capture cell heterogeneity
+- validate robustness: perform rank-product statistics on reproducibility of 100, 500, 1000 vs. all cells from different clusters and re-perform the analysis (do we still get the same cluster)
+- 
+
 
 
