@@ -16,6 +16,8 @@ Zoom Meeting (2020.03.02 Tue):
 - [Unsupervised clustering and epigenetic classification of single cells](https://www.nature.com/articles/s41467-018-04629-3)
 - [Profiling chromatin regulatory landscape: insights into the development of ChIP-seq and ATAC-seq](https://link.springer.com/article/10.1186/s43556-020-00009-w)
 - [Single-cell ATAC sequencing analysis: From data preprocessing to hypothesis generation](https://www.sciencedirect.com/science/article/pii/S2001037020303019?via%3Dihub)
+- [From reads to insight: a hitchhiker’s guide to ATAC-seq data analysis](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-020-1929-3)
+- [Single-cell ATAC sequencing analysis: From data preprocessing to hypothesis generation](https://www.sciencedirect.com/science/article/pii/S2001037020303019)
 
 
 ### Limitations on current scATAC-seq processing
