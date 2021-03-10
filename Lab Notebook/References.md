@@ -28,6 +28,31 @@
 4. Dimensionality reduction
  - reducing its dimensionality, such that biological variance is retained but random variables contributing to noise are eliminated, is critical for downstream analysis and visualization
    - MDS
+
+
+[Mapping genetic effects on cell type-specific chromatin accessibility and annotating complex trait variants using single nucleus ATAC-seq](https://www.biorxiv.org/content/10.1101/2020.12.03.387894v1)
+
+#### [Single-Cell Transcriptomic Analysis of Cardiac Differentiation from Human PSCs Reveals HOPX- Dependent Cardiomyocyte Maturation](https://www.cell.com/cell-stem-cell/fulltext/S1934-5909(18)30446-6?_returnURL=https%3A%2F%2Flinkinghub.elsevier.com%2Fretrieve%2Fpii%2FS1934590918304466%3Fshowall%3Dtrue)
+
+- performed extensive single-cell transcriptomic analyses to map fate choices and gene expression programs during cardiac differentiation of hPSCs and identified strategies to improve in vitro cardiomyocyte differentiation.
+- identify the non-DNA binding homeodomain protein *HOPX*, a key regulator of heart development and hypertrophy as dysregulated during differentiation and a potential cause for the immature state of hPSC-derived cardiomyocytes *in vitro*
+
+#### [ChIP-R: Assembling reproducible sets of ChIP-seq and ATAC-seq peaks from multiple replicates](https://www.biorxiv.org/content/10.1101/2020.11.24.396960v1.supplementary-material)
+
+[GITHUB LINK](https://github.com/rhysnewell/ChIP-R/)
+
+- Combine multiple ChIP-seq files and return a union of all peak locations and a set confident, reproducible peaks as determined by rank product analysis
+
+- chip-seq detect genome-wide DNA-protein interactions, a key tool for understanding transcriptional regulation
+  - limitations: 
+   - low specificity of antibody & cellular heterogeneity of sample => cause “peak” callers to output noise and experimental artefacts
+   - ChIP-seq protocols are susceptible to produce false positive signals as DNA regions not bound by the target protein can be pulled down indiscriminately during immunoprecipitation
+- Statistically combining multiple experimental replicates from the same condition could signifi- cantly enhance our ability to distinguish actual transcription factor binding events, even when peak caller accuracy and consistency of detection are compromised.
+- rank-product test => statistically evaluate the reproducibility from any number of ChIP-seq experimental replicates
+- "ChIP-R" extends to evaluate ATAC-seq peaks => finding reproducible peak sets even at low sequencing depth
+
+
+
    - tSNE
    - UMAP
 5. Cell clustering and differential accessibility analysis
