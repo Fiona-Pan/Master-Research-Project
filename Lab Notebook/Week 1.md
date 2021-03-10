@@ -127,7 +127,7 @@ zoom meeting (2021.02.23 Tue) :
   - Picard
 
   ```
-  
+  java -jar ../../../picard.jar MarkDuplicates I=../3_Align/atac_v1_pbmc_5k_aln.sorted.bam O=atac_v1_pbmc_5k_marked_duplicates.bam M=atac_v1_pbmc_5k_marked.duplicates_metrics.txt
   ```
 
 ##### Convert into BAM file, sort and index:
