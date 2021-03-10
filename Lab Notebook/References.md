@@ -1,6 +1,9 @@
 # Reading List
 
 - [Rank products: a simple, yet powerful, new method to detect differentially regulated genes in replicated microarray experiments](https://febs.onlinelibrary.wiley.com/doi/full/10.1016/j.febslet.2004.07.055)
+  - calculating rank products (RP) from replicate experiments
+  - identifying differentially expressed genes that does not originate from a sophisticated statistical model but rather from an analysis of biological reasoning
+  - provides a straightforward and statistically stringent way to determine the significance level for each gene and allows for the flexible control of the false-detection rate and familywise error rate in the multiple testing situation of a microarray experiment
 
 - [Assessment of computational methods for the analysis of single-cell ATAC-seq data](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1854-5)
   - [Github](https://github.com/pinellolab/scATAC-benchmarking/)
