@@ -27,7 +27,14 @@ zoom meeting (2021.02.23 Tue) :
 
 ### **Dataset:**
 
-- public dataset from 10X Genomics: [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor](https://support.10xgenomics.com/single-cell-atac/datasets/1.2.0/atac_v1_pbmc_5k)
+[10X Genomics - Single cell ATAC](https://support.10xgenomics.com/single-cell-atac/datasets)
+
+- [5k Peripheral blood mononuclear cells (PBMCs) from a healthy donor](https://support.10xgenomics.com/single-cell-atac/datasets/1.2.0/atac_v1_pbmc_5k)    [summary](https://cf.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_web_summary.html)
+  - Peripheral blood mononuclear cells (PBMCs) from a healthy donor.
+  - ~6700 transposed nuclei were loaded.
+  - 4,654 nuclei were recovered.
+  - Sequenced on Illumina NovaSeq with approximately 41k read pairs per cell.
+  - 50bp read1, 8bp i7 (sample index), 16bp i5 (10x Barcode), 49bp read2.
 
 ### **scATAC-seq analysis tools:**
 
