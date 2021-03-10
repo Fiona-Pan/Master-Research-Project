@@ -42,7 +42,12 @@ zoom meeting (2021.02.23 Tue) :
 - [Cell Ranger](https://support.10xgenomics.com/single-cell-gene-expression/software/pipelines/latest/installation)
 - [ArchR](https://www.archrproject.com/bookdown/getting-started-with-archr.html)
 - [snapshot](https://github.com/znavidi/scATAC-seq-analysis-pipeline)
-
+- [Scasat](https://github.com/ManchesterBioinference/Scasat)
+- [chromVAR](https://greenleaflab.github.io/chromVAR/)
+- [Brockman](https://carldeboer.github.io/brockman_pipe_example.html)
+- [scATAC-pro](https://github.com/wbaopaul/scATAC-pro)
+- [Cicero](https://cole-trapnell-lab.github.io/cicero-release/docs/)
+- [Seurat](https://satijalab.org/seurat/index.html)
 
 ### **Analysis Pipeline:**
 
