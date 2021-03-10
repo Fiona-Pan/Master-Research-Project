@@ -72,10 +72,6 @@ zoom meeting (2021.02.23 Tue) :
   - R1 is the forward read, 
   - [R2 is the 16 bp 10x feature barcode](https://divingintogeneticsandgenomics.rbind.io/post/understand-10x-scrnaseq-and-scatac-fastqs/)
   - R3 is the reverse read
-  - <ins>Question: Merge two lanes before QC/Reads Mapping or after?</ins>
-    -  merge them when they are at the Bam file level (so after the fragments have been mapped to the genome)
-  - <ins>Question: Need to add cell barcodes? (add R2 on R1 and R3)</ins>
-
 
 ##### Attach cell barcodes:
   
@@ -89,6 +85,9 @@ zoom meeting (2021.02.23 Tue) :
   sinto barcode -b 12 --barcode_fastq atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz \
   --read1 atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz \
   --read2 atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz 
+  
+  cat atac_v1_pbmc_5k_S1_L001_R1_001.fastq.gz atac_v1_pbmc_5k_S1_L002_R1_001.fastq.gz > atac_v1_pbmc_5k_S1_R1_001.fastq.gz
+  cat atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz > atac_v1_pbmc_5k_S1_R3_001.fastq.gz
   ```
 
   
