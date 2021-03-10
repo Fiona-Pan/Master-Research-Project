@@ -90,6 +90,7 @@ zoom meeting (2021.02.23 Tue) :
 
   ```
   ls *gz | while read id; do fastqc -o fastqc $id; done
+ 
   ```
 
 ##### Reads Mapping:
