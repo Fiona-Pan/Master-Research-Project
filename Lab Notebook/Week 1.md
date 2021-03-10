@@ -10,8 +10,6 @@ zoom meeting (2021.02.23 Tue) :
 ### Reading List:
 
 - [ChIP-R: Assembling reproducible sets of ChIP-seq and ATAC-seq peaks from multiple replicates](https://www.biorxiv.org/content/10.1101/2020.11.24.396960v1.supplementary-material)
-  - Combine multiple ChIP-seq files and return a union of all peak locations and a set confident, reproducible peaks as determined by rank product analysis
-  - "ChIP-R" extends to evaluate ATAC-seq peaks => finding reproducible peak sets even at low sequencing depth
 
 - [Rank products: a simple, yet powerful, new method to detect differentially regulated genes in replicated microarray experiments](https://febs.onlinelibrary.wiley.com/doi/full/10.1016/j.febslet.2004.07.055)
 
