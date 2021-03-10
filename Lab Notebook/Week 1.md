@@ -151,25 +151,11 @@ zoom meeting (2021.02.23 Tue) :
   - Genrich / MACS2
 
   ```
-  macs2 callpeak -t atac_v1_pbmc_5k_S1_L001_aln.sorted.bam -p 1e-3 --nolambda --nomodel -n atac_v1_pbmc_5k_S1_L001_peak --outdir ../5_CallPeaks
+  macs2 callpeak -t atac_v1_pbmc_5k_S1_L001_aln.sorted.bam -p 1e-3 --nomodel -n atac_v1_pbmc_5k_S1_L001_peak --outdir ../5_CallPeaks
   ```
-    
-##### Access reproducibility of final peaks:
-    
-  - input: .bed
-  - output: .bed
-  - [Chip-R](https://github.com/rhysnewell/ChIP-R/)
-
-  ```
-
-  ```
-  
-  - consider cell populations
-    - group cels by cell types
-    - refine cell-type-specific-peaks
    
   
 #### 2. Downstream Analysis:
 
-Week3.md
+[Week3.md](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/Week%203.md)
 
