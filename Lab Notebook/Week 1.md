@@ -171,10 +171,5 @@ zoom meeting (2021.02.23 Tue) :
   
 #### 2. Downstream Analysis:
 
-  - dimension reduction
-  - clustering
-  - differential accessbility
-  - identification of cells
-  - biological insights
-
+Week3.md
 
