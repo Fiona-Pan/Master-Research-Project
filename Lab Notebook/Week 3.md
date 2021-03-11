@@ -58,7 +58,27 @@ snaptools align-paired-end \
 --tmp-folder=./ \
 --overwrite=TRUE
 
+# pre-processing
+snaptools snap-pre \
+--input-file=atac_v1_pbmc_5k.bam \
+--output-snap=atac_v1_pbmc_5k.snap \
+--genome-name=hg19 \
+--genome-size=hg19.chrom.sizes \
+--min-mapq=30 \
+--min-flen=0 \
+--max-flen=1000 \
+--keep-chrm=TRUE \
+--keep-single=FALSE \
+--keep-secondary=FALSE \
+--overwrite=True \
+--min-cov=100 \
+--verbose=True
 
+# Cell-by-bin matrix
+snaptools snap-add-bmat \
+--snap-file=atac_v1_pbmc_5k.snap \
+--bin-size-list 1000 2000 5000 10000 \
+--verbose=True
 
 
 ```
