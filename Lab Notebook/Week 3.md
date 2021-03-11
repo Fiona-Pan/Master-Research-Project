@@ -8,6 +8,10 @@ Zoom meeting (2020.03.09 Tue):
 
 ### Snaptools Pipeline
 
+- input: raw fastq files
+- output: peak-by-cell matrix
+- [Github](https://github.com/r3fang/SnapATAC)
+
 ```
 # download data
 wget https://cg.10xgenomics.com/samples/cell-atac/1.2.0/atac_v1_pbmc_5k/atac_v1_pbmc_5k_fastqs.tar
@@ -28,7 +32,7 @@ snaptools dex-fastq --input-fastq=atac_v1_pbmc_5k_S1_L001_R3_001.fastq.gz \
 --index-fastq-list atac_v1_pbmc_5k_S1_L001_R2_001.fastq.gz
 
 snaptools dex-fastq --input-fastq=atac_v1_pbmc_5k_S1_L002_R3_001.fastq.gz \
---output-fastq=atac_v1_pbmc_5k_S1_L002_R3_002.dex.fastq.gz \
+--output-fastq=atac_v1_pbmc_5k_S1_L002_R3_001.dex.fastq.gz \
 --index-fastq-list atac_v1_pbmc_5k_S1_L002_R2_001.fastq.gz
 
 # combine lanes
@@ -41,10 +45,42 @@ gzip -d hg19.fa.gz
 snaptools index-genome --input-fasta=hg19.fa --output-prefix=hg19 --aligner=bwa --path-to-aligner=/usr/bin --num-threads=5
 
 # Align (bwa)
+snaptools align-paired-end \
+--input-reference=../../Combine/3_Align/hg19.fa \
+--input-fastq1=atac_v1_pbmc_5k_R1.dex.fastq.gz \
+--input-fastq2=atac_v1_pbmc_5k_R3.dex.fastq.gz \
+--output-bam=atac_v1_pbmc_5k.bam \
+--aligner=bwa \
+--read-fastq-command=zcat \
+--min-cov=0 \
+--num-threads=5 \
+--if-sort=True \
+--tmp-folder=./ \
+--overwrite=TRUE
+
+
+
+
+```
+
+### Clustering Analysis
+
+- R
+
+
+```
+
+
 
 
 
 
 
 ```
+
+
+
+
+
+
 
