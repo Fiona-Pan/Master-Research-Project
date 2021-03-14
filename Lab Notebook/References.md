@@ -15,7 +15,9 @@
   - public data with aligned files in BAM format&rarr; three commonly used clustering approaches (K-means, Louvain, hierarchical clustering) &rarr; UMAP projection &rarr; visualize cell-to-cell similarities 
     - computational methods include: BROCKMAN, chromVAR, Cicero, cisTopic, *Cusanovich2018*, Gene Scoring, scABC, Scasat, SCRAT, SnapATAC
       - single-BAM file &rarr; feature matrix construction (define regions, count features, transformation, dimensionality reduction)
-
+      - **SnapATAC**: segments the genome into uniformly sized bins and adjusts fpr differences in library size between cells using a regression-based normalization method &rarr; PCA to select most significant components for clustering
+      - **cisTopic**: apply LDA to identfy cell states from topic-cell distribution and explore cis-regulatory regions from region-topic distribution
+      - ***Cusanovich2018***: first partition the genome into windows, normalize reads within windows using TF-IDF, reduce dimensionality using SVDm oerform first-round of clustering to generate clades and call peaks within them. 
 
 - [Profiling Chromatin Accessibility at Single-cell Resolution](https://www.sciencedirect.com/science/article/pii/S1672022921000115?via%3Dihub)
 
