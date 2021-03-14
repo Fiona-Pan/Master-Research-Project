@@ -7,6 +7,15 @@
 
 - [Assessment of computational methods for the analysis of single-cell ATAC-seq data](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-019-1854-5)
   - [Github](https://github.com/pinellolab/scATAC-benchmarking/)
+  - computational challenges associated with scATAC-seq analysis: inherently sparse data, determination of features, peak calling, the effects of sequencing coverage and noise, clustering performance
+  - analysis steps: 
+   - raw reads obtained in .fastq format for each single cell are mapped to a reference genome, producing aligned reads in .bam format
+   - peak calling and read counting return the genomic position and the read counts in .bed and .txt format
+   - data in these file formats in then used for downstream analysis
+   - feature matrix constructed from single cells (by counting the number of reads at each peak for every cell) followed by visualization, clustering, trrajectory inference, determination of differential accessibility, prediction of cis-regulatory networks
+  - public data with aligned files in BAM format, using three commonly used clustering approaches (K-means, Louvain, hierarchical clustering) and UMAP projection to find putative subpopulations and visualize cell-to-cell similarities for each method
+  - computational methods include: BROCKMAN, chromVAR, Cicero, cisTopic, *Cusanovich2018*, Gene Scoring, scABC, Scasat, SCRAT, SnapATAC
+   - single-BAM file &rarr; feature matrix construction (define regions, count features, transformation, dimensionality reduction)
 
 - [Profiling Chromatin Accessibility at Single-cell Resolution](https://www.sciencedirect.com/science/article/pii/S1672022921000115?via%3Dihub)
 
