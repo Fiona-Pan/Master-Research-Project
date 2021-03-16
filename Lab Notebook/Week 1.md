@@ -48,6 +48,10 @@ zoom meeting (2021.02.23 Tue) :
 - [scATAC-pro](https://github.com/wbaopaul/scATAC-pro)
 - [Cicero](https://cole-trapnell-lab.github.io/cicero-release/docs/)
 - [Seurat](https://satijalab.org/seurat/index.html)
+- [SnapATAC](https://github.com/r3fang/SnapATAC)
+- [sinto](https://timoast.github.io/sinto/scatac.html)
+- [cisTopic](https://github.com/aertslab/cisTopic)
+- [APEC](https://github.com/QuKunLab/APEC)
 
 ### **Analysis Pipeline:**
 
