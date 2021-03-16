@@ -385,8 +385,10 @@ peak.gr
 
 ```
 
-
-
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot1.png)
+![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot2-bin-coverage.png)
+![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot-dimension-selection.png)
+![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot-cluster-tSNE.png)
 
 
 
