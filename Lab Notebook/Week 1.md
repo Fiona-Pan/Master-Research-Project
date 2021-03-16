@@ -152,16 +152,6 @@ zoom meeting (2021.02.23 Tue) :
   ```
   sinto fragments -b atac_v1_pbmc_5k_S1_aln.sorted.bam -p 8 -f ../4_Fragment/atac_v1_pbmc_5k_S1_fragments.bed --barcode_regex "[^:]*"
   ```
-    
-##### Peak Calling:
-    
-  - input:
-  - output:
-  - Genrich / MACS2
-
-  ```
-  macs2 callpeak -t atac_v1_pbmc_5k_S1_L001_aln.sorted.bam -p 1e-3 --nomodel -n atac_v1_pbmc_5k_S1_L001_peak --outdir ../5_CallPeaks
-  ```
    
   
 #### 2. Downstream Analysis:
