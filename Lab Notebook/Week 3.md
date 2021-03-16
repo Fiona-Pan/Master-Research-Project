@@ -89,12 +89,299 @@ snaptools snap-add-bmat \
 
 
 ```
+# input: 
+#   - snap file(converted from BAM by snapTools): atac_v1_pbmc_5k.snap
+#   - per barcode metrics: atac_v1_pbmc_5k_singlecell.csv
+#   - hg19 blacklist: Anshul_Hg19UltraHighSignalArtifactRegions.bed.gz
+rm(list=ls())
+gc()
+#-----------------
+# Dependencies
+#-----------------
+library(SnapATAC)
+library(viridisLite)
+library(ggplot2)
+library(GenomicRanges)
+
+#-----------------
+# Barcode Selection
+#-----------------
+# select high-quality barcodes based on 
+  # 1) # of unique fragments; 
+  # 2) fragments in promoter ratio
+x.sp=createSnap(
+  file="/Users/apple/Downloads/Master_Research/data/5k_PBMC/atac_v1_pbmc_5k.snap",
+  sample="atac_v1_pbmc_5k",
+  num.cores=1
+)
+x.sp #number of barcodes: 91652
+summarySnap(x.sp)
+barcodes=read.csv("/Users/apple/Downloads/Master_Research/data/5k_PBMC/atac_v1_pbmc_5k_singlecell.csv",
+                  head=TRUE)
+barcodes$barcode=substr(barcodes$barcode,1,16)
+barcodes=barcodes[2:nrow(barcodes),]
+promoter_ratio=(barcodes$promoter_region_fragments+1)/(barcodes$passed_filters+1)
+UMI=log(barcodes$passed_filters+1,10)
+data=data.frame(UMI=UMI,promoter_ratio=promoter_ratio)
+barcodes$promoter_ratio=promoter_ratio
+
+#plot
+p1=ggplot(
+  data,aes(x=UMI,y=promoter_ratio)) +
+  geom_point(size=0.1,col="grey") +
+  theme_classic() +
+  ggtitle("5X PBMC") +
+  ylim(0,1) + xlim(0,6) +
+  labs(x="log10(UMI)",y="promoter ratio")
+p1
+
+barcodes.sel=barcodes[which(UMI>=3 & UMI <=5 & promoter_ratio >=0.15 & promoter_ratio <=0.6),]
+rownames(barcodes.sel)=barcodes.sel$barcode
+x.sp=x.sp[which(x.sp@barcode %in% barcodes.sel$barcode),]
+x.sp@metaData=barcodes.sel[x.sp@barcode,]
+x.sp
+
+#-----------------
+# Add cell-by-bin matrix
+#-----------------
+# add the cell-by-bin matrix to snap object
+showBinSizes("/Users/apple/Downloads/Master_Research/data/5k_PBMC/atac_v1_pbmc_5k.snap") #1000  2000  5000 10000
+x.sp=addBmatToSnap(x.sp,bin.size=5000,num.cores=1)
+x.sp #number of barcodes: 2650; number of bins: 627478
+
+#-----------------
+# Matrix binarization
+#-----------------
+# convert cell-by-bin coount matrix to a binary matrix
+# remove 0.1% items of the highest coverage in the count matrix, convert remaining non-zero to 1
+x.sp=makeBinary(x.sp,mat="bmat")
+
+#-----------------
+# Bin Filtering
+#-----------------
+# filter out bins overlapping with the ENCODE blacklist
+# prevent potential artifacts
+blacklist=read.table("/Users/apple/Downloads/Master_Research/data/5k_PBMC/Anshul_Hg19UltraHighSignalArtifactRegions.bed.gz")
+blacklist.gr=GRanges(
+  blacklist[,1],
+  IRanges(blacklist[,2],blacklist[,3])
+)
+idy=queryHits(findOverlaps(x.sp@feature,blacklist.gr))
+if(length(idy)>0){x.sp=x.sp[,-idy,mat="bmat"]}
+x.sp #number of bins: 625212
+
+# remove unwanted chromosomes
+chr.exclude=seqlevels(x.sp@feature)[grep("random|chrM",seqlevels(x.sp@feature))]
+idy=grep(paste(chr.exclude,collapse="|"),x.sp@feature)
+if(length(idy)>0){x.sp=x.sp[,-idy,mat="bmat"]}
+x.sp #number of bins: 624711
+
+# remove top 5% bins that overlap with invariant features (ex. promoters of house keeping genes)
+bin.cov=log10(Matrix::colSums(x.sp@bmat)+1)
+hist(
+  bin.cov[bin.cov>0],
+  xlab="log10(bin cov)",
+  main="log10(Bin Cov)",
+  col="lightblue",
+  xlim=c(0,5)
+)
+bin.cutoff=quantile(bin.cov[bin.cov>0],0.95)
+idy=which(bin.cov <= bin.cutoff & bin.cov >0)
+x.sp=x.sp[,idy,mat="bmat"]
+x.sp #number of bins: 523350
+
+#-----------------
+# Dimensionality reduction
+#-----------------
+# compute diffusion maps for dimentionality reduction
+x.sp=runDiffusionMaps(
+  obj=x.sp,
+  input.mat = "bmat",
+  num.eigs = 50
+)
+
+#-----------------
+# Determine significant components
+#-----------------
+# choose first 12 dimensions
+plotDimReductPW(
+  obj=x.sp, 
+  eigs.dims=1:50,
+  point.size=0.3,
+  point.color="grey",
+  point.shape=19,
+  point.alpha=0.6,
+  down.sample=5000,
+  pdf.file.name=NULL, 
+  pdf.height=7, 
+  pdf.width=7
+)
+
+#-----------------
+# Graph-based clustering
+#-----------------
+# construct K Nearest Neighbor Graph
+x.sp=runKNN(
+  obj=x.sp,
+  eigs.dims=1:12,
+  k=15
+)
+
+x.sp=runCluster(
+  obj=x.sp,
+  tmp.folder = tempdir(),
+  louvain.lib="R-igraph",
+  seed.use=10
+)
+
+x.sp@metaData$cluster=x.sp@cluster
+#-----------------
+# Visualization
+#-----------------
+x.sp=runViz(
+  obj=x.sp,
+  tmp.folder = tempdir(),
+  dims=2,
+  eigs.dims=1:12,
+  method="Rtsne",
+  seed.use=10
+)
+par(mfrow = c(2, 2))
+plotViz(
+  obj=x.sp,
+  method="tsne",
+  main="5K PBMC",
+  point.color=x.sp@cluster,
+  point.size=1,
+  point.shape=19,
+  point.alpha=0.8,
+  text.add=TRUE,
+  text.size=1.5,
+  text.color="black",
+  text.halo.add=TRUE,
+  text.halo.color="white",
+  text.halo.width=0.2,
+  down.sample=10000,
+  legend.add=FALSE
+)
+
+plotFeatureSingle(
+  obj=x.sp,
+  feature.value = log(x.sp@metaData[,"passed_filters"]+1,10),
+  method="tsne",
+  main="5K PBMC read depth",
+  point.size=0.2,
+  point.shape=19,
+  down.sample=10000,
+  quantiles=c(0.01,0.99)
+)
+
+plotFeatureSingle(
+  obj=x.sp,
+  feature.value=x.sp@metaData$peak_region_fragments / x.sp@metaData$passed_filters,
+  method="tsne", 
+  main="5K PBMC FRiP",
+  point.size=0.2, 
+  point.shape=19, 
+  down.sample=10000,
+  quantiles=c(0.01, 0.99) # remove outliers
+)
+
+plotFeatureSingle(
+  obj=x.sp,
+  feature.value=x.sp@metaData$duplicate / x.sp@metaData$total,
+  method="tsne", 
+  main="5K PBMC Duplicate",
+  point.size=0.2, 
+  point.shape=19, 
+  down.sample=10000,
+  quantiles=c(0.01, 0.99) # remove outliers
+)
+
+#-----------------
+# Gene based annotation
+#-----------------
+# annotate identified cell clusters
+# create cell-by-gene matrix and visualize the enrichment of marker genes
 
 
 
 
 
+#-----------------
+# Heretical clustering
+#-----------------
+# cells belong to the same cluster are pooled to create the aggregate signal
+ensemble.ls = lapply(split(seq(length(x.sp@cluster)), x.sp@cluster), function(x){
+  SnapATAC::colMeans(x.sp[x,], mat="bmat");
+})
 
+hc = hclust(as.dist(1 - cor(t(do.call(rbind, ensemble.ls)))), method="ward.D2");
+
+plotViz(
+  obj=x.sp,
+  method="tsne", 
+  main="5K PBMC Cluster",
+  point.color=x.sp@cluster, 
+  point.size=1, 
+  point.shape=19, 
+  point.alpha=0.8, 
+  text.add=TRUE,
+  text.size=1.5,
+  text.color="black",
+  text.halo.add=TRUE,
+  text.halo.color="white",
+  text.halo.width=0.2,
+  down.sample=10000,
+  legend.add=FALSE
+)
+
+plot(hc,hang=-1,xlab="")
+
+
+#-----------------
+# Identify peaks
+#-----------------
+# aggregate cells from each cluster to create an ensemble track for peak calling
+# snaptools: /Users/apple/miniconda3/bin/snaptools
+# macs2: /Users/apple/miniconda3/bin/macs2
+runMACS(
+  obj=x.sp[which(x.sp@cluster==1),], #first cluster
+  output.prefix="atac_v1_pbmc_5k.1",
+  path.to.snaptools = "/Users/apple/miniconda3/bin/snaptools",
+  path.to.macs = "/Users/apple/miniconda3/bin/macs2",
+  gsize="hs",
+  buffer.size=500,
+  num.cores = 5,
+  macs.options = "--nomodel --shift 100 --ext 200 --qval 5e-2 -B --SPMR",
+  tmp.folder = tempdir()
+)
+
+# for all clusters with more than 150 cells
+peaks.ls = mclapply(seq(clusters.sel), function(i){
+  print(clusters.sel[i]);
+  runMACS(
+    obj=x.sp[which(x.sp@cluster==clusters.sel[i]),], 
+    output.prefix=paste0("atac_v1_pbmc_5k.", gsub(" ", "_", clusters.sel)[i]),
+    path.to.snaptools="/Users/apple/miniconda3/bin/snaptools",
+    path.to.macs="/Users/apple/miniconda3/bin/macs2",
+    gsize="hs",
+    buffer.size=500, 
+    num.cores=1,
+    macs.options="--nomodel --shift 100 --ext 200 --qval 5e-2 -B --SPMR",
+    tmp.folder=tempdir()
+  );
+}, mc.cores=5)
+
+peaks.names = system("ls | grep narrowPeak", intern=TRUE);
+
+peak.gr.ls = lapply(peaks.names, function(x){
+  peak.df = read.table(x)
+  GRanges(peak.df[,1], IRanges(peak.df[,2], peak.df[,3]))
+})
+
+peak.gr = reduce(Reduce(c, peak.gr.ls))
+peak.gr
 
 ```
 
