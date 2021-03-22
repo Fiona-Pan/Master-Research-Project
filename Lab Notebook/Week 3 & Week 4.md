@@ -513,10 +513,13 @@ x.sp
 
 ```
 
-![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot1.png)
-![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot2-bin-coverage.png)
-![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot-dimension-selection.png)
-![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/Lab%20Notebook/plots/Rplot-cluster-tSNE.png)
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration.pdf)
+![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection-Elbow%20point.pdf)
+![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection.pdf)
+![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%2BtSNE%20clustering.pdf)
+![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-tSNE%20clustering.pdf)
+![6](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%20clustering.pdf)
+![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
 
 
 
