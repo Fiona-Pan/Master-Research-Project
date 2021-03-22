@@ -551,6 +551,7 @@ saveRDS(x.sp, file="atac_v1_pbmc_5k.snap.rds")
 ```
 
 
+![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
 
 create cell-by-peak matrix and add to the snap file
 ```
@@ -634,9 +635,9 @@ for(i in 1:nrow(x.sp.cluster.ls$cluster1@pmat)){
 
 ```
 table(x.sp@cluster) 
-# number of cells in each cluster
-#1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-#571 534 457 430 396 364 363 239 202 192 160 146 122 109  81 
+number of cells in each cluster
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+  571 534 457 430 396 364 363 239 202 192 160 146 122 109  81 
 ```
 
 2. Peak info
@@ -646,7 +647,7 @@ x.sp@pmat # peak-by-cell matrix
 x.sp@pmat@Dim # 4366 (cells) 102613 (peaks) 
 length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks)
 
-# by-clusters: # cells in each cluster
+by-clusters: # cells in each cluster
 [1] "cluster1: 571 cells & 102613 peaks"
 [1] "cluster2: 534 cells & 102613 peaks"
 [1] "cluster3: 457 cells & 102613 peaks"
@@ -663,7 +664,7 @@ length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks
 [1] "cluster14: 109 cells & 102613 peaks"
 [1] "cluster15: 81 cells & 102613 peaks"
 
-# by-cluster: # non-zero count peaks
+by-cluster: # non-zero count peaks
 [1] "non-zero peaks couts: cluster1: 0.0612"
 [1] "non-zero peaks couts: cluster2: 0.0995"
 [1] "non-zero peaks couts: cluster3: 0.081"
@@ -679,10 +680,7 @@ length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks
 [1] "non-zero peaks couts: cluster13: 0.0699"
 [1] "non-zero peaks couts: cluster14: 0.0614"
 [1] "non-zero peaks couts: cluster15: 0.0606"
-
 ```
-
-![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
 
 
 ```
