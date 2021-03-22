@@ -118,6 +118,17 @@ x.sp=createSnap(
 )
 x.sp #number of barcodes: 91652
 summarySnap(x.sp)
+
+plotBarcode(
+  obj=x.sp, 
+  pdf.file.name=NULL, 
+  pdf.width=7, 
+  pdf.height=7, 
+  col="grey",
+  border="grey",
+  breaks=50
+)
+
 barcodes=read.csv("/Users/apple/Downloads/Master_Research/data/5k_PBMC/atac_v1_pbmc_5k_singlecell.csv",
                   head=TRUE)
 barcodes$barcode=substr(barcodes$barcode,1,16)
@@ -144,8 +155,13 @@ barcodes.sel=barcodes[which(UMI>=3 & UMI <=5 & promoter_ratio >=0.15 & promoter_
 rownames(barcodes.sel)=barcodes.sel$barcode
 x.sp=x.sp[which(x.sp@barcode %in% barcodes.sel$barcode),]
 x.sp@metaData=barcodes.sel[x.sp@barcode,]
-x.sp #4841
+x.sp # number of barcodes: 4841 (was 91652)
 
+```
+
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg)
+
+```
 #-----------------
 # Add cell-by-bin matrix
 #-----------------
@@ -213,6 +229,7 @@ set.seed(1)
 idx.landmark.ds <- sort(sample(x = seq(nrow(x.sp)), size = 4000, prob = sampling_prob));
 x.landmark.sp = x.sp[idx.landmark.ds,];
 x.query.sp = x.sp[-idx.landmark.ds,];
+
 x.landmark.sp = runDiffusionMaps(
   obj= x.landmark.sp,
   input.mat="bmat", 
@@ -226,18 +243,26 @@ x.query.sp = runDiffusionMapsExtension(
 );
 x.query.sp@metaData$landmark = 0;
 x.sp = snapRbind(x.landmark.sp, x.query.sp);
-x.sp = x.sp[order(x.sp@metaData[,"sample"])]; #IMPORTANT
-
-# x.sp=runDiffusionMaps(
-#   obj=x.sp,
-#   input.mat = "bmat",
-#   num.eigs = 50
-# )
+x.sp@metaData["sample"] = x.sp@sample
+x.sp = x.sp[order(x.sp@metaData[,"sample"])];
 
 #-----------------
 # Determine significant components
 #-----------------
 # choose first 12 dimensions
+plotDimReductElbow(
+  obj=x.sp, 
+  point.size=1.5,
+  point.shape=19,
+  point.color="red",
+  point.alpha=1,
+  pdf.file.name=NULL,
+  pdf.height=7,
+  pdf.width=7,
+  labs.title="PCA Elbow plot",
+  labs.subtitle=NULL
+)
+
 plotDimReductPW(
   obj=x.sp, 
   eigs.dims=1:50,
@@ -251,6 +276,20 @@ plotDimReductPW(
   pdf.width=7
 )
 
+
+df_out = data.frame(t(x.sp@smat@dmat)[1:20,],row.names = sprintf("PC_%s",seq(1:20)))
+colnames(df_out) = as.character(x.sp@metaData$barcode)
+dim(df_out)
+df_out[1:5,1:5]
+```
+
+![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection-Elbow%20point(Page1).jpg)
+
+
+![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection(Page1).jpg)
+
+
+```
 #-----------------
 # Graph-based clustering
 #-----------------
@@ -264,7 +303,7 @@ x.sp=runKNN(
 x.sp=runCluster(
   obj=x.sp,
   tmp.folder = tempdir(),
-  louvain.lib="leiden",
+  louvain.lib="leiden", #"R-igraph"
   seed.use=10
 )
 
@@ -294,7 +333,7 @@ plotViz(
   point.shape=19, 
   text.add=TRUE,
   text.size=1,
-  text.color="black",
+  text.color="black",,
   down.sample=10000,
   legend.add=FALSE
 );
@@ -437,7 +476,16 @@ plotViz(
 
 plot(hc,hang=-1,xlab="")
 
+```
 
+![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%2BtSNE%20clustering(Page1).jpg)
+
+![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-tSNE%20clustering(Page1).jpg)
+
+![6](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%20clustering(Page1).jpg)
+
+
+```
 #-----------------
 # Identify peaks
 #-----------------
@@ -455,33 +503,37 @@ plot(hc,hang=-1,xlab="")
 #   macs.options = "--nomodel --shift 100 --ext 200 --qval 5e-2 -B --SPMR",
 #   tmp.folder = tempdir()
 # )
-
-clusters.sel = names(table(x.sp@cluster))[which(table(x.sp@cluster) > 100)]
-# for all clusters with more than 150 cells
-peaks.ls = mclapply(seq(clusters.sel), function(i){
-  print(clusters.sel[i]);
-  runMACS(
-    obj=x.sp[which(x.sp@cluster==clusters.sel[i]),], 
-    output.prefix=paste0("atac_v1_pbmc_5k.", gsub(" ", "_", clusters.sel)[i]),
-    path.to.snaptools="/Users/apple/miniconda3/bin/snaptools",
-    path.to.macs="/Users/apple/miniconda3/bin/macs2",
-    gsize="hs",
-    buffer.size=500, 
-    num.cores=1,
-    macs.options="--nomodel --shift 100 --ext 200 --qval 5e-2 -B --SPMR",
-    tmp.folder=tempdir()
-  );
-}, mc.cores=5)
+# 
+# clusters.sel = names(table(x.sp@cluster))[which(table(x.sp@cluster) > 100)]
+# # for all clusters with more than 150 cells
+# peaks.ls = mclapply(seq(clusters.sel), function(i){
+#   print(clusters.sel[i]);
+#   runMACS(
+#     obj=x.sp[which(x.sp@cluster==clusters.sel[i]),], 
+#     output.prefix=paste0("atac_v1_pbmc_5k.", gsub(" ", "_", clusters.sel)[i]),
+#     path.to.snaptools="/Users/apple/miniconda3/bin/snaptools",
+#     path.to.macs="/Users/apple/miniconda3/bin/macs2",
+#     gsize="hs",
+#     buffer.size=500, 
+#     num.cores=1,
+#     macs.options="--nomodel --shift 100 --ext 200 --qval 5e-2 -B --SPMR",
+#     tmp.folder=tempdir()
+#   );
+# }, mc.cores=5)
 
 peaks.names = system("ls | grep narrowPeak", intern=TRUE);
 
-peak.gr.ls = lapply(peaks.names, function(x){
+peak.gr.ls = lapply(peaks.names, function(x){ # a list of GRanges of clusters
   peak.df = read.table(x)
   GRanges(peak.df[,1], IRanges(peak.df[,2], peak.df[,3]))
 })
 
-peak.gr = reduce(Reduce(c, peak.gr.ls))
+peak.gr = reduce(Reduce(c, peak.gr.ls)) # reduce into one GRange object for all clusters
 peak.gr
+
+# clusters
+# 1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+# 571 534 457 430 396 364 363 239 202 192 160 146 122 109  81
 
 #-----------------
 # Create cell-by-peak matrix
@@ -493,37 +545,175 @@ write.table(peaks.df,file = "peaks.combined.bed",append=FALSE,
             row.names = FALSE, col.names = FALSE, qmethod = c("escape", "double"),
             fileEncoding = "")
 
+saveRDS(x.sp, file="atac_v1_pbmc_5k.snap.rds")
+```
 
-#saveRDS(x.sp, file="atac_v1_pbmc_5k.snap.rds")
 
 
-# create cell-by-peak matrix and add to the snap file
-# snaptools snap-add-pmat \
-# --snap-file atac_v1_pbmc_5k.snap \
-# --peak-file peaks.combined.bed
+create cell-by-peak matrix and add to the snap file
+```
+# 
+  # snaptools snap-add-pmat \
+    # --snap-file /Users/apple/Downloads/Master_Research/data/5k_PBMC/atac_v1_pbmc_5k.snap \
+    # --peak-file /Users/apple/Documents/peaks.combined.bed 
 
+
+```
+
+
+
+```
 #-----------------
 # Add cell-by-peak matrix
 #-----------------
 #x.sp = readRDS("atac_v1_pbmc_5k.snap.rds")
 x.sp = addPmatToSnap(x.sp)
 x.sp = makeBinary(x.sp, mat="pmat")
-x.sp
+x.sp #number of peaks: 102613
+
+
+#-----------------
+table(x.sp@cluster) # number of cells in each cluster
+x.sp@pmat #cell-by-peak matrix
+x.sp@pmat@Dim #4366 (cells) 102613 (peaks) 
+length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks)
+
+# pmat cluster1
+cluster1=x.sp[which(x.sp@cluster==1),]
+cluster1@pmat
+cluster1@pmat@Dim #571 102613
+length(cluster1@pmat@x)/length(cluster1@pmat) #0.06124419
+
+# pmat by-cluster
+clusters.sel = names(table(x.sp@cluster))
+x.sp.cluster.ls=list()
+x.sp.cluster.names=c()
+for(i in seq(clusters.sel)){
+  names=sprintf("cluster%s",i)
+  x.sp.clusters=x.sp[which(x.sp@cluster==i),]
+  x.sp.cluster.ls=append(x.sp.cluster.ls,x.sp.clusters)
+  x.sp.cluster.names=append(x.sp.cluster.names,names)
+}
+names(x.sp.cluster.ls)<-x.sp.cluster.names
+x.sp.cluster.ls
+
+for(i in 1:length(x.sp.cluster.ls)){
+  cluster_i=x.sp.cluster.ls[[i]]
+  names=names(x.sp.cluster.ls)[i]
+  nz_peaks=length(cluster_i@pmat@x)
+  total_length=length(cluster_i@pmat)
+  nz_counts=nz_peaks/total_length
+  #print(sprintf("%s: %s cells & %s peaks",names,cluster_i@pmat@Dim[1],cluster_i@pmat@Dim[2]))
+  print(sprintf("non-zero peaks couts: %s: %s",names,round(nz_counts,4)))
+  }
+
+
+sum(x.sp.cluster.ls$cluster1@pmat[1,]) # No. peaks in one cell (row)
+sum(x.sp.cluster.ls$cluster1@pmat[,1]) # No. cells in one peak (col)
+
+pk_in_cell_cluster_1=c()
+cell_in_pk_cluster_1=c()
+for(i in 1:nrow(x.sp.cluster.ls$cluster1@pmat)){
+  cell_name=rownames(x.sp.cluster.ls$cluster1@pmat)[i]
+  pk_in_cell=sum(x.sp.cluster.ls$cluster1@pmat[i,])
+  pk_in_cell_cluster_1=append(pk_in_cell_cluster_1,sprintf("cell %s: %s peaks total",i,pk_in_cell))
+  
+  cell_in_pk=sum(x.sp.cluster.ls$cluster1@pmat[,i])
+  cell_in_pk_cluster_1=append(cell_in_pk_cluster_1,sprintf("peak %s: %s cells",i,cell_in_pk))
+  }
+
+b=as.matrix.csr(x.sp.cluster.ls$cluster2@pmat[1:nrow(x.sp.cluster.ls$cluster2@pmat),1:ncol(x.sp.cluster.ls$cluster2@pmat)])
+image(b)
+
+
+#-----------------
+
+
+
+DARs = findDAR(
+  obj=x.sp,
+  input.mat="pmat",
+  cluster.pos=10,
+  cluster.neg.method="knn",
+  test.method="exactTest",
+  bcv=0.1, #0.4 for human, 0.1 for mouse
+  seed.use=10
+);
+DARs$FDR = p.adjust(DARs$PValue, method="BH");
+idy = which(DARs$FDR < 5e-2 & DARs$logFC > 0);
+par(mfrow = c(1, 2));
+plot(DARs$logCPM, DARs$logFC, 
+     pch=19, cex=0.1, col="grey", 
+     ylab="logFC", xlab="logCPM",
+     main="Cluster 10"
+);
+points(DARs$logCPM[idy], 
+       DARs$logFC[idy], 
+       pch=19, 
+       cex=0.5, 
+       col="red"
+)
+abline(h = 0, lwd=1, lty=2);
+covs = Matrix::rowSums(x.sp@pmat);
+vals = Matrix::rowSums(x.sp@pmat[,idy]) / covs;
+vals.zscore = (vals - mean(vals)) / sd(vals);
+plotFeatureSingle(
+  obj=x.sp,
+  feature.value=vals.zscore,
+  method="tsne", 
+  main="Cluster 10",
+  point.size=0.1, 
+  point.shape=19, 
+  down.sample=5000,
+  quantiles=c(0.01, 0.99)
+);
+
+
+# SnapATAC finds differentially accessible regions (DARs) that define clusters via differential analysis
+# DARs for each of the clusters
+idy.ls = lapply(levels(x.sp@cluster), function(cluster_i){
+  DARs = findDAR(
+    obj=x.sp,
+    input.mat="pmat",
+    cluster.pos=cluster_i,
+    cluster.neg=NULL,
+    cluster.neg.method="knn",
+    bcv=0.1,
+    test.method="exactTest",
+    seed.use=10
+  );
+  DARs$FDR = p.adjust(DARs$PValue, method="BH");
+  idy = which(DARs$FDR < 5e-2 & DARs$logFC > 0);
+  if((x=length(idy)) < 2000L){
+    PValues = DARs$PValue;
+    PValues[DARs$logFC < 0] = 1;
+    idy = order(PValues, decreasing=FALSE)[1:2000];
+    rm(PValues); # free memory
+  }
+  idy
+})
+names(idy.ls) = levels(x.sp@cluster);
+par(mfrow = c(4, 4));
+for(cluster_i in levels(x.sp@cluster)){
+  print(cluster_i)
+  idy = idy.ls[[cluster_i]];
+  vals = Matrix::rowSums(x.sp@pmat[,idy]) / covs;
+  vals.zscore = (vals - mean(vals)) / sd(vals);
+  plotFeatureSingle(
+    obj=x.sp,
+    feature.value=vals.zscore,
+    method="tsne", 
+    main=cluster_i,
+    point.size=0.1, 
+    point.shape=19, 
+    down.sample=5000,
+    quantiles=c(0.01, 0.99)
+  );
+}
 
 
 ```
 
-![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg)
-
-![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection-Elbow%20point(Page1).jpg)
-
-![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection(Page1).jpg)
-
-![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%2BtSNE%20clustering(Page1).jpg)
-
-![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-tSNE%20clustering(Page1).jpg)
-
-![6](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%20clustering(Page1).jpg)
 
 ![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
 
