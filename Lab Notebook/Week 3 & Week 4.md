@@ -159,6 +159,8 @@ x.sp # number of barcodes: 4841 (was 91652)
 
 ```
 
+UMI: unique molecular identifier 
+
 ![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg)
 
 ```
