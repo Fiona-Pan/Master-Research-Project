@@ -513,7 +513,7 @@ x.sp
 
 ```
 
-![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg)
 ![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection-Elbow%20point(Page1).jpg)
 ![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection(Page1).jpg)
 ![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%2BtSNE%20clustering(Page1).jpg)
