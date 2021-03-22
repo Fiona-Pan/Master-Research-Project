@@ -571,7 +571,6 @@ x.sp = addPmatToSnap(x.sp)
 x.sp = makeBinary(x.sp, mat="pmat")
 x.sp #number of peaks: 102613
 
-
 #-----------------
 table(x.sp@cluster) # number of cells in each cluster
 x.sp@pmat #cell-by-peak matrix
@@ -611,8 +610,9 @@ for(i in 1:length(x.sp.cluster.ls)){
 sum(x.sp.cluster.ls$cluster1@pmat[1,]) # No. peaks in one cell (row)
 sum(x.sp.cluster.ls$cluster1@pmat[,1]) # No. cells in one peak (col)
 
-pk_in_cell_cluster_1=c()
-cell_in_pk_cluster_1=c()
+pk_in_cell_cluster_1=c() # how many peaks in each cell
+cell_in_pk_cluster_1=c() # how many cells in each peak
+
 for(i in 1:nrow(x.sp.cluster.ls$cluster1@pmat)){
   cell_name=rownames(x.sp.cluster.ls$cluster1@pmat)[i]
   pk_in_cell=sum(x.sp.cluster.ls$cluster1@pmat[i,])
@@ -622,13 +622,68 @@ for(i in 1:nrow(x.sp.cluster.ls$cluster1@pmat)){
   cell_in_pk_cluster_1=append(cell_in_pk_cluster_1,sprintf("peak %s: %s cells",i,cell_in_pk))
   }
 
-b=as.matrix.csr(x.sp.cluster.ls$cluster2@pmat[1:nrow(x.sp.cluster.ls$cluster2@pmat),1:ncol(x.sp.cluster.ls$cluster2@pmat)])
-image(b)
-
-
 #-----------------
 
+```
 
+**Worth Mention:**
+
+1. Cluster info
+
+```
+table(x.sp@cluster) 
+# number of cells in each cluster
+#1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
+#571 534 457 430 396 364 363 239 202 192 160 146 122 109  81 
+```
+
+2. Peak info
+
+```
+x.sp@pmat # peak-by-cell matrix
+x.sp@pmat@Dim # 4366 (cells) 102613 (peaks) 
+length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks)
+
+# by-clusters: # cells in each cluster
+[1] "cluster1: 571 cells & 102613 peaks"
+[1] "cluster2: 534 cells & 102613 peaks"
+[1] "cluster3: 457 cells & 102613 peaks"
+[1] "cluster4: 430 cells & 102613 peaks"
+[1] "cluster5: 396 cells & 102613 peaks"
+[1] "cluster6: 364 cells & 102613 peaks"
+[1] "cluster7: 363 cells & 102613 peaks"
+[1] "cluster8: 239 cells & 102613 peaks"
+[1] "cluster9: 202 cells & 102613 peaks"
+[1] "cluster10: 192 cells & 102613 peaks"
+[1] "cluster11: 160 cells & 102613 peaks"
+[1] "cluster12: 146 cells & 102613 peaks"
+[1] "cluster13: 122 cells & 102613 peaks"
+[1] "cluster14: 109 cells & 102613 peaks"
+[1] "cluster15: 81 cells & 102613 peaks"
+
+# by-cluster: # non-zero count peaks
+[1] "non-zero peaks couts: cluster1: 0.0612"
+[1] "non-zero peaks couts: cluster2: 0.0995"
+[1] "non-zero peaks couts: cluster3: 0.081"
+[1] "non-zero peaks couts: cluster4: 0.0553"
+[1] "non-zero peaks couts: cluster5: 0.0829"
+[1] "non-zero peaks couts: cluster6: 0.066"
+[1] "non-zero peaks couts: cluster7: 0.0666"
+[1] "non-zero peaks couts: cluster8: 0.0808"
+[1] "non-zero peaks couts: cluster9: 0.0727"
+[1] "non-zero peaks couts: cluster10: 0.0744"
+[1] "non-zero peaks couts: cluster11: 0.0687"
+[1] "non-zero peaks couts: cluster12: 0.0847"
+[1] "non-zero peaks couts: cluster13: 0.0699"
+[1] "non-zero peaks couts: cluster14: 0.0614"
+[1] "non-zero peaks couts: cluster15: 0.0606"
+
+```
+
+![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
+
+
+```
 
 DARs = findDAR(
   obj=x.sp,
@@ -715,7 +770,7 @@ for(cluster_i in levels(x.sp@cluster)){
 ```
 
 
-![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
+
 
 
 
