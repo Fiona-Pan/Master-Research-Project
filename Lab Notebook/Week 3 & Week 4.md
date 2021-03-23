@@ -636,8 +636,8 @@ for(i in 1:nrow(x.sp.cluster.ls$cluster1@pmat)){
 ```
 table(x.sp@cluster) 
 number of cells in each cluster
-  1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-  571 534 457 430 396 364 363 239 202 192 160 146 122 109  81 
+  1   2   3   4   5   6   7   8   9  10  11  12  13  14 
+663 611 505 489 398 368 241 208 193 172 160 134 122 102 
 ```
 
 2. Peak info
@@ -647,38 +647,21 @@ x.sp@pmat # peak-by-cell matrix
 x.sp@pmat@Dim # 4366 (cells) 102613 (peaks) 
 length(x.sp@pmat@x)/length(x.sp@pmat) # 0.07368226 (7.4% of non-zero count peaks)
 
-by-clusters: # cells in each cluster
-[1] "cluster1: 571 cells & 102613 peaks"
-[1] "cluster2: 534 cells & 102613 peaks"
-[1] "cluster3: 457 cells & 102613 peaks"
-[1] "cluster4: 430 cells & 102613 peaks"
-[1] "cluster5: 396 cells & 102613 peaks"
-[1] "cluster6: 364 cells & 102613 peaks"
-[1] "cluster7: 363 cells & 102613 peaks"
-[1] "cluster8: 239 cells & 102613 peaks"
-[1] "cluster9: 202 cells & 102613 peaks"
-[1] "cluster10: 192 cells & 102613 peaks"
-[1] "cluster11: 160 cells & 102613 peaks"
-[1] "cluster12: 146 cells & 102613 peaks"
-[1] "cluster13: 122 cells & 102613 peaks"
-[1] "cluster14: 109 cells & 102613 peaks"
-[1] "cluster15: 81 cells & 102613 peaks"
-
 by-cluster: # non-zero count peaks
-[1] "non-zero peaks couts: cluster1: 0.063"
-[1] "non-zero peaks couts: cluster2: 0.0587"
-[1] "non-zero peaks couts: cluster3: 0.1012"
-[1] "non-zero peaks couts: cluster4: 0.0808"
-[1] "non-zero peaks couts: cluster5: 0.0834"
-[1] "non-zero peaks couts: cluster6: 0.0656"
-[1] "non-zero peaks couts: cluster7: 0.0805"
-[1] "non-zero peaks couts: cluster8: 0.0731"
-[1] "non-zero peaks couts: cluster9: 0.0598"
-[1] "non-zero peaks couts: cluster10: 0.0744"
+[1] "non-zero peaks couts: cluster1: 0.0619"
+[1] "non-zero peaks couts: cluster2: 0.0596"
+[1] "non-zero peaks couts: cluster3: 0.1007"
+[1] "non-zero peaks couts: cluster4: 0.0826"
+[1] "non-zero peaks couts: cluster5: 0.0829"
+[1] "non-zero peaks couts: cluster6: 0.0658"
+[1] "non-zero peaks couts: cluster7: 0.0807"
+[1] "non-zero peaks couts: cluster8: 0.0725"
+[1] "non-zero peaks couts: cluster9: 0.0749"
+[1] "non-zero peaks couts: cluster10: 0.0607"
 [1] "non-zero peaks couts: cluster11: 0.0687"
-[1] "non-zero peaks couts: cluster12: 0.0828"
+[1] "non-zero peaks couts: cluster12: 0.0787"
 [1] "non-zero peaks couts: cluster13: 0.0699"
-[1] "non-zero peaks couts: cluster14: 0.0627"
+[1] "non-zero peaks couts: cluster14: 0.061"
 ```
 
 
