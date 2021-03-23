@@ -1,4 +1,4 @@
-# WEEK 3
+# WEEK 3 & WEEK 4
 
 
 Zoom meeting (2020.03.09 Tue):
@@ -251,7 +251,6 @@ x.sp = x.sp[order(x.sp@metaData[,"sample"])];
 #-----------------
 # Determine significant components
 #-----------------
-# choose first 12 dimensions
 plotDimReductElbow(
   obj=x.sp, 
   point.size=1.5,
@@ -533,9 +532,6 @@ peak.gr.ls = lapply(peaks.names, function(x){ # a list of GRanges of clusters
 peak.gr = reduce(Reduce(c, peak.gr.ls)) # reduce into one GRange object for all clusters
 peak.gr
 
-# clusters
-#   1   2   3   4   5   6   7   8   9  10  11  12  13  14 
-# 661 594 497 496 392 357 238 205 192 192 160 145 122 115 
 
 #-----------------
 # Create cell-by-peak matrix
@@ -663,97 +659,6 @@ by-cluster: # non-zero count peaks
 [1] "non-zero peaks couts: cluster13: 0.0699"
 [1] "non-zero peaks couts: cluster14: 0.061"
 ```
-
-
-```
-
-DARs = findDAR(
-  obj=x.sp,
-  input.mat="pmat",
-  cluster.pos=10,
-  cluster.neg.method="knn",
-  test.method="exactTest",
-  bcv=0.1, #0.4 for human, 0.1 for mouse
-  seed.use=10
-);
-DARs$FDR = p.adjust(DARs$PValue, method="BH");
-idy = which(DARs$FDR < 5e-2 & DARs$logFC > 0);
-par(mfrow = c(1, 2));
-plot(DARs$logCPM, DARs$logFC, 
-     pch=19, cex=0.1, col="grey", 
-     ylab="logFC", xlab="logCPM",
-     main="Cluster 10"
-);
-points(DARs$logCPM[idy], 
-       DARs$logFC[idy], 
-       pch=19, 
-       cex=0.5, 
-       col="red"
-)
-abline(h = 0, lwd=1, lty=2);
-covs = Matrix::rowSums(x.sp@pmat);
-vals = Matrix::rowSums(x.sp@pmat[,idy]) / covs;
-vals.zscore = (vals - mean(vals)) / sd(vals);
-plotFeatureSingle(
-  obj=x.sp,
-  feature.value=vals.zscore,
-  method="tsne", 
-  main="Cluster 10",
-  point.size=0.1, 
-  point.shape=19, 
-  down.sample=5000,
-  quantiles=c(0.01, 0.99)
-);
-
-
-# SnapATAC finds differentially accessible regions (DARs) that define clusters via differential analysis
-# DARs for each of the clusters
-idy.ls = lapply(levels(x.sp@cluster), function(cluster_i){
-  DARs = findDAR(
-    obj=x.sp,
-    input.mat="pmat",
-    cluster.pos=cluster_i,
-    cluster.neg=NULL,
-    cluster.neg.method="knn",
-    bcv=0.1,
-    test.method="exactTest",
-    seed.use=10
-  );
-  DARs$FDR = p.adjust(DARs$PValue, method="BH");
-  idy = which(DARs$FDR < 5e-2 & DARs$logFC > 0);
-  if((x=length(idy)) < 2000L){
-    PValues = DARs$PValue;
-    PValues[DARs$logFC < 0] = 1;
-    idy = order(PValues, decreasing=FALSE)[1:2000];
-    rm(PValues); # free memory
-  }
-  idy
-})
-names(idy.ls) = levels(x.sp@cluster);
-par(mfrow = c(4, 4));
-for(cluster_i in levels(x.sp@cluster)){
-  print(cluster_i)
-  idy = idy.ls[[cluster_i]];
-  vals = Matrix::rowSums(x.sp@pmat[,idy]) / covs;
-  vals.zscore = (vals - mean(vals)) / sd(vals);
-  plotFeatureSingle(
-    obj=x.sp,
-    feature.value=vals.zscore,
-    method="tsne", 
-    main=cluster_i,
-    point.size=0.1, 
-    point.shape=19, 
-    down.sample=5000,
-    quantiles=c(0.01, 0.99)
-  );
-}
-
-
-```
-
-
-
-
 
 
 
