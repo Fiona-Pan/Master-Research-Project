@@ -534,8 +534,8 @@ peak.gr = reduce(Reduce(c, peak.gr.ls)) # reduce into one GRange object for all 
 peak.gr
 
 # clusters
-# 1   2   3   4   5   6   7   8   9  10  11  12  13  14  15 
-# 571 534 457 430 396 364 363 239 202 192 160 146 122 109  81
+#   1   2   3   4   5   6   7   8   9  10  11  12  13  14 
+# 661 594 497 496 392 357 238 205 192 192 160 145 122 115 
 
 #-----------------
 # Create cell-by-peak matrix
@@ -665,21 +665,20 @@ by-clusters: # cells in each cluster
 [1] "cluster15: 81 cells & 102613 peaks"
 
 by-cluster: # non-zero count peaks
-[1] "non-zero peaks couts: cluster1: 0.0612"
-[1] "non-zero peaks couts: cluster2: 0.0995"
-[1] "non-zero peaks couts: cluster3: 0.081"
-[1] "non-zero peaks couts: cluster4: 0.0553"
-[1] "non-zero peaks couts: cluster5: 0.0829"
-[1] "non-zero peaks couts: cluster6: 0.066"
-[1] "non-zero peaks couts: cluster7: 0.0666"
-[1] "non-zero peaks couts: cluster8: 0.0808"
-[1] "non-zero peaks couts: cluster9: 0.0727"
+[1] "non-zero peaks couts: cluster1: 0.063"
+[1] "non-zero peaks couts: cluster2: 0.0587"
+[1] "non-zero peaks couts: cluster3: 0.1012"
+[1] "non-zero peaks couts: cluster4: 0.0808"
+[1] "non-zero peaks couts: cluster5: 0.0834"
+[1] "non-zero peaks couts: cluster6: 0.0656"
+[1] "non-zero peaks couts: cluster7: 0.0805"
+[1] "non-zero peaks couts: cluster8: 0.0731"
+[1] "non-zero peaks couts: cluster9: 0.0598"
 [1] "non-zero peaks couts: cluster10: 0.0744"
 [1] "non-zero peaks couts: cluster11: 0.0687"
-[1] "non-zero peaks couts: cluster12: 0.0847"
+[1] "non-zero peaks couts: cluster12: 0.0828"
 [1] "non-zero peaks couts: cluster13: 0.0699"
-[1] "non-zero peaks couts: cluster14: 0.0614"
-[1] "non-zero peaks couts: cluster15: 0.0606"
+[1] "non-zero peaks couts: cluster14: 0.0627"
 ```
 
 
