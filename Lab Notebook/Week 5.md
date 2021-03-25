@@ -122,6 +122,12 @@ saveRDS(pbmc, file = "pbmc5k_scRNA.rds")
 
 ```
 
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/2.%20scRNA-seq-clustering/pdfs-1.jpg)
+![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/2.%20scRNA-seq-clustering/pdfs-2.jpg)
+![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/2.%20scRNA-seq-clustering/pdfs-3.jpg)
+
+
+
 ## scATAC-seq & scRNA-seq integration
 
 ```
@@ -335,5 +341,7 @@ saveRDS(x.sp, file="atac_v1_pbmc_5k.final.rds")
 
 ```
 
+![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/3.%20scATAC-scRNA-integration/pdfs-1.jpg)
+![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/3.%20scATAC-scRNA-integration/pdfs-2.jpg)
 
 
