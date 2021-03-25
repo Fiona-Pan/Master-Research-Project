@@ -161,7 +161,9 @@ x.sp # number of barcodes: 4841 (was 91652)
 
 UMI: unique molecular identifier 
 
-![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-barcodes%20filtration(Page1).jpg)
+![1](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/1-plot-raw-snap-barcode-1.jpg)
+![1.5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/2-plot-barcode-selection.jpg)
+![1.75](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/3-hist-bin-coverage-1.jpg)
 
 ```
 #-----------------
@@ -284,10 +286,10 @@ dim(df_out)
 df_out[1:5,1:5]
 ```
 
-![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection-Elbow%20point(Page1).jpg)
+![2](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/4-Elbow-KNN-1.jpg)
 
 
-![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-PCA%20dimension%20selection(Page1).jpg)
+![3](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/5-eigen-val-selection-1.jpg)
 
 
 ```
@@ -479,11 +481,11 @@ plot(hc,hang=-1,xlab="")
 
 ```
 
-![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%2BtSNE%20clustering(Page1).jpg)
+![4](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/6-UMAP-1.jpg)
 
-![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-tSNE%20clustering(Page1).jpg)
+![5](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/7-t-SNE-1.jpg)
 
-![6](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/Rplot-UMAP%20clustering(Page1).jpg)
+![6](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/8-Hierarchical-clustering-1.jpg)
 
 
 ```
@@ -547,7 +549,7 @@ saveRDS(x.sp, file="atac_v1_pbmc_5k.snap.rds")
 ```
 
 
-![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/IGV-plot-by-clusters.png)
+![7](https://github.com/Fiona-Pan/Master-Research-Project/blob/main/plots/1.%20scATAC-seq-clustering/IGV-plot-by-clusters.png)
 
 create cell-by-peak matrix and add to the snap file
 ```
