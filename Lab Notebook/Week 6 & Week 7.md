@@ -75,6 +75,12 @@ Clustering:
 
 ![dendrogram](https://user-images.githubusercontent.com/55969398/115218406-1b68e880-a139-11eb-9cf3-95f3bc4fadca.png)
 
+```
+# number of cells in each cluster
+  1   2   3   4   5   6   7   8   9  10  11 
+807 782 739 718 687 668 641 582 541 470 375 
+```
+
 
 
 
