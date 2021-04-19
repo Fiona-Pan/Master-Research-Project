@@ -136,5 +136,37 @@ Clustering:
 
 - dendrogram:
 
+![dendrogram](https://user-images.githubusercontent.com/55969398/115253268-cb9d1800-a15e-11eb-9a2e-9563417d5994.png)
+
+```
+  1   2   3   4   5   6   7   8   9  10  11  12  13 
+608 571 513 476 426 400 395 358 250 235 226 191 181 
+```
+
+cell-by-peak matrix:
+
+- dimension: 4830(cells) x 238842 (peaks)
+- non-zero count: 0.07618712
+- by-cluster:
+
+```
+[1] "non-zero peaks couts: cluster1: 0.0588"
+[1] "non-zero peaks couts: cluster2: 0.067"
+[1] "non-zero peaks couts: cluster3: 0.1588"
+[1] "non-zero peaks couts: cluster4: 0.1035"
+[1] "non-zero peaks couts: cluster5: 0.0803"
+[1] "non-zero peaks couts: cluster6: 0.0633"
+[1] "non-zero peaks couts: cluster7: 0.069"
+[1] "non-zero peaks couts: cluster8: 0.0623"
+[1] "non-zero peaks couts: cluster9: 0.0734"
+[1] "non-zero peaks couts: cluster10: 0.0199"
+[1] "non-zero peaks couts: cluster11: 0.0534"
+[1] "non-zero peaks couts: cluster12: 0.0306"
+[1] "non-zero peaks couts: cluster13: 0.0731"
+```
+
+
+
+
 
 
