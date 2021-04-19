@@ -18,6 +18,9 @@
 
 **Results**
 
+#### Sample1
+
+
 raw barcodes:
 
 - Total  number of barcodes: 99884
@@ -44,7 +47,7 @@ barcodes.sel=barcodes1[which(UMI>=3 & UMI <=5.5 & promoter_ratio >=0.1 & promote
 
 ```
 
-![barcode-selection](https://user-images.githubusercontent.com/55969398/115208418-1e5edb80-a12f-11eb-842c-d0e0c4caaa6d.png =250x)
+![barcode-selection](https://user-images.githubusercontent.com/55969398/115208418-1e5edb80-a12f-11eb-842c-d0e0c4caaa6d.png)
 
 - number of barcodes: 7010
 - number of bins: 535551  #cell-by-bin matrix
@@ -54,7 +57,7 @@ barcodes.sel=barcodes1[which(UMI>=3 & UMI <=5.5 & promoter_ratio >=0.1 & promote
 
 Determine significant components:
 
-- dims = 6
+- dims = 8
 
 ![Elbow](https://user-images.githubusercontent.com/55969398/115211177-e4db9f80-a131-11eb-947b-535309b325c3.png)
 ![Dims](https://user-images.githubusercontent.com/55969398/115217323-f9bb3180-a137-11eb-867b-d63162303a01.png)
@@ -81,6 +84,57 @@ Clustering:
 807 782 739 718 687 668 641 582 541 470 375 
 ```
 
+
+
+#### Sample2
+raw barcodes:
+
+- Total  number of barcodes: 109841
+- Median number of sequencing fragments: 541
+- Median number of uniquely mapped fragments: 269
+- Median number of mappability ratio: 0.78
+- Median number of properly paired ratio: 1
+- Median number of duplicate ratio: 0.3
+- Median number of chrM ratio: 0.44
+- Median number of unique molecules (UMI): 269
+
+barcode selection:
+
+```
+barcodes.sel=barcodes1[which(UMI>=3.5 & UMI <=5.75 & promoter_ratio >=0.1 & promoter_ratio <=0.5),]
+
+```
+
+![barcode](https://user-images.githubusercontent.com/55969398/115235746-1b72e380-a14d-11eb-962b-e71f3aa44796.png)
+
+- number of barcodes: 4830
+- number of bins: 535618
+- number of genes: 0
+- number of peaks: 0
+- number of motifs: 0
+
+
+Determine significant components:
+
+- dims=10
+
+![Elbow](https://user-images.githubusercontent.com/55969398/115235901-49582800-a14d-11eb-8eb8-35eb5f51d1d5.png)
+![dims](https://user-images.githubusercontent.com/55969398/115235917-4c531880-a14d-11eb-994c-cc67fdb835a0.png)
+
+Clustering:
+
+- UMAP:
+
+![UMAP](https://user-images.githubusercontent.com/55969398/115235990-668cf680-a14d-11eb-9941-68ed4ad600cd.png)
+![UMAP-feature](https://user-images.githubusercontent.com/55969398/115236028-73114f00-a14d-11eb-85e6-a63d79466229.png)
+
+
+- t-SNE:
+
+![t-SNE](https://user-images.githubusercontent.com/55969398/115236083-86241f00-a14d-11eb-9817-2cf406e18f8e.png)
+![t-SNE-feature](https://user-images.githubusercontent.com/55969398/115236139-94723b00-a14d-11eb-9372-57760cbeb2bf.png)
+
+- dendrogram:
 
 
 
