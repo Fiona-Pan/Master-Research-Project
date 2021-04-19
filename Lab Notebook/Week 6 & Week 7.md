@@ -44,7 +44,7 @@ barcodes.sel=barcodes1[which(UMI>=3 & UMI <=5.5 & promoter_ratio >=0.1 & promote
 
 ```
 
-![barcode-selection](https://user-images.githubusercontent.com/55969398/115208418-1e5edb80-a12f-11eb-842c-d0e0c4caaa6d.png=250x)
+![barcode-selection](https://user-images.githubusercontent.com/55969398/115208418-1e5edb80-a12f-11eb-842c-d0e0c4caaa6d.png =250x)
 
 - number of barcodes: 7010
 - number of bins: 535551  #cell-by-bin matrix
