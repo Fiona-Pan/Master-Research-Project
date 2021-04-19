@@ -166,7 +166,94 @@ cell-by-peak matrix:
 ```
 
 
+#### Selection of high-value peaks in each cluster
+
+```
+#-----------------
+# Extract high-score peaks
+#-----------------
+library(ChIPseeker)
+
+setwd("/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/L1peak/edited")
+peaks.names = system("ls *narrowPeak| grep narrowPeak", intern=TRUE)
+names=str_match(peaks.names,"Library_20190731_001_S2.(.*)_peaks.edited.narrowPeak")[,2]
+peak.gr.ls = lapply(peaks.names, function(x){ # a list of GRanges of clusters
+  peak.df = read.table(x)
+  GRanges(peak.df[,1], IRanges(peak.df[,2], peak.df[,3]),names=peak.df[,4],score=peak.df[,5],signalValue=peak.df[,7],pvalue=peak.df[,8],qvalue=peak.df[,9],peak=peak.df[,10])
+})
+names(peak.gr.ls)<-names
+# how many peaks for each cluster
+for(i in 1:length(peak.gr.ls)){
+  print(length(peak.gr.ls[[i]]))
+}
+
+# quantile for each cluster - by score
+for(i in 1:length(peak.gr.ls)){
+  print(quantile(peak.gr.ls[[i]]$score))
+} # selection of 75% as threshold
 
 
+# quantile for each cluster - by signalVal
+for(i in 1:length(peak.gr.ls)){
+  print(quantile(peak.gr.ls[[i]]$signalValue))
+} # selection of 50% as threshold
+
+
+# new list of high-score cluster peaks
+q=list()
+for(i in 1:length(peak.gr.ls)){
+  new=peak.gr.ls[[i]][peak.gr.ls[[i]]$score>quantile(peak.gr.ls[[i]]$score)["75%"]]
+  q=append(q,list(new))
+}
+
+# new list of high-signalVal cluster peaks
+s=list()
+for(i in 1:length(q)){
+  new=q[[i]][q[[i]]$signalValue>quantile(q[[i]]$signalValue)["50%"]]
+  s=append(s,list(new))
+}
+
+# check
+for(i in 1:length(s)){
+  print(length(s[[i]]))
+}
+
+# peak.gr.ls.new
+peak.gr.ls.new=s
+names(peak.gr.ls.new)=names
+
+# peaks combined
+peak.gr = reduce(Reduce(c, peak.gr.ls.new)) # reduce into one GRange object for all clusters
+peak.gr
+
+# save each cluster peaks as bed
+for(i in 1:length(peak.gr.ls.new)){
+  peak.gr.df=as.data.frame(peak.gr.ls.new[[i]])
+  peak.gr.df[,"strand"]='.'
+  peak.gr.df=peak.gr.df[,c(1,2,3,6,7,5,8,9,10,11)]
+  write.table(peak.gr.df,file=str_c("peaks",names[i],".narrowPeak"),append=FALSE,
+              quote= FALSE,sep="\t", eol = "\n", na = "NA", dec = ".",
+              row.names = FALSE, col.names = FALSE, qmethod = c("escape", "double"),
+              fileEncoding = "")
+}
+
+#save combined bed
+peaks.df = as.data.frame(peak.gr)[,1:3]
+write.table(peaks.df,file = "peaks.combined.bed",append=FALSE,
+            quote= FALSE,sep="\t", eol = "\n", na = "NA", dec = ".",
+            row.names = FALSE, col.names = FALSE, qmethod = c("escape", "double"),
+            fileEncoding = "")
+
+# snaptools snap-add-pmat \
+# --snap-file atac_v1_pbmc_5k.snap \
+# --peak-file peaks.combined.bed 
+
+
+# peaks plot
+peak10=peak.gr.ls.new[[1]]
+covplot(peak10,weightCol="signalValue")
+covplot(peak.gr.ls.new,weightCol="signalValue")
+
+```
 
 
