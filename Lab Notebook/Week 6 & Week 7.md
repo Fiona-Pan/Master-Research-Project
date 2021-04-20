@@ -255,6 +255,7 @@ covplot(peak10,weightCol="signalValue")
 covplot(peak.gr.ls.new,weightCol="signalValue")
 
 ```
+
 ![image](https://user-images.githubusercontent.com/55969398/115321913-74776180-a1b7-11eb-854a-e3268e87d296.png)
 ![image](https://user-images.githubusercontent.com/55969398/115321926-7f31f680-a1b7-11eb-8919-5ff0320a5b3c.png)
 
