@@ -6,6 +6,7 @@
   - integration of scRNA-seq dataset
   - peak annotation, gene signatures
   - enrichment analysis (e.g enriched GO term for each cluster)
+  - investigation of cell population changes b/t control and kD
   - ...
 
 - sample ID
