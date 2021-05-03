@@ -472,3 +472,21 @@ dev.off()
 saveRDS(atac,"/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/RDS/L1-scATAC-integration-Seurat.rds")
 
 ```
+
+#### Control sample
+
+![image](https://user-images.githubusercontent.com/55969398/116888545-2f930680-ac5e-11eb-85f0-2f103ba82ac1.png)
+![image](https://user-images.githubusercontent.com/55969398/116888570-36217e00-ac5e-11eb-8313-c539b7084055.png)
+![image](https://user-images.githubusercontent.com/55969398/116888754-69fca380-ac5e-11eb-97e1-9e81ce227c2a.png)
+
+
+
+#### TMEM88 KD sample
+
+![image](https://user-images.githubusercontent.com/55969398/116888800-74b73880-ac5e-11eb-8e3a-bf7589ec7e43.png)
+![image](https://user-images.githubusercontent.com/55969398/116888819-7a148300-ac5e-11eb-9aba-1f70f2f9a41c.png)
+![image](https://user-images.githubusercontent.com/55969398/116888824-7c76dd00-ac5e-11eb-8dd4-4a302e1b5648.png)
+
+
+
+
