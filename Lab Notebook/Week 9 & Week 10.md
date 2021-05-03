@@ -1,16 +1,5 @@
 # WEEK 9 & WEEK 10
 
-##### Table of Contents  
-[Headers](#headers)  
-[Emphasis](#emphasis)  
-
-***
-
-<a name="headers"/>
-## Headers
-
-***
-
 
 **Zoom Meeting:**
 
