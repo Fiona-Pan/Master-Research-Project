@@ -1,4 +1,4 @@
-# WEEK 8 & WEEK 9
+# WEEK 9 & WEEK 10
 
 **Zoom Meeting:**
 
@@ -12,6 +12,4 @@
 - sample ID
   - Library_20190731_001: Control sample (sometimes referred to as 0XAV)
   - Library_20190731_002: TMEM88 KD sample (sometimes referred to as Dox)
-
-**Reading List:**
 
