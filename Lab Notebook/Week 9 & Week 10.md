@@ -288,7 +288,25 @@ saveRDS(scrna1, file = "scrna1-Seurat.rds")
   - integration clustering (UMAP)
 
 - explaination on how it is integrated:
+```
+Aim:
 
+- scATAC-seq cell annotation are challenging process, due to both sparsity of genomic data collected at single-cell resolution, and lack of interpretable gene markers in scRNA-seq data
+- integrate scATAC-seq datasets for better understanding on cellular identity and function
+  - Since both originally measured in the same cell, provides ground truth to access accuracy of integration
+
+Method
+
+- perform scRNA-seq and scATAC-seq experiments on the same biological system and to consistently annotate both datasets with the same set of cell type labels
+  - Use annotated scRNA-seq dataset to label cells from scATAC-seq experiment
+    - first identify anchors between scRNA-seq and scATAC-seq experiments by estimation of transcrptional activity of each gene by quantifying ATAC-seq counts in the 2kb-upstream region and gene body `Signac::GeneActivity()`
+    - Calculate gene activity score from scATAC-seq data and gene expression of scRNA-seq as input for CCA (canonical correlation analysis) reduction --> better capture frature correlation structure
+      -  `Signac::FindTransferAnchors`: project PCA structure from ref (rna) onto query (atac) 
+    - after identification of anchors, transfer annotations from scRNA-seq onto scATAC-seq cells, output a matrix with predictions and confidence scores for each ATAC-seq cell `Signac::TransferData`
+    - after performing transfer, predicted annotations were stored in ATAC-seq dataet along with classification score for each cell for each scRNA-seq-defined cluster label
+  - Co-visualize (co-embed) cells from scRNA-seq and scATAC-seq into a shared reduced dimension and predict cell types for ATAC-seq data based on distances to the pre-annotated cells in RNA-seq data
+  - Project scATAC-seq cells onto UMAP derived from scRNA-seq experiment
+```
 
 ```
 
