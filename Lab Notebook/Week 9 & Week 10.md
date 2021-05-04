@@ -287,6 +287,9 @@ saveRDS(scrna1, file = "scrna1-Seurat.rds")
   - L1-scATAC-integration-Seurat.rds (Seurat Obj.)
   - integration clustering (UMAP)
 
+- explaination on how it is integrated:
+
+
 ```
 
 #-----------------
