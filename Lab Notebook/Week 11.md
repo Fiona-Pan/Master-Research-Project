@@ -15,6 +15,128 @@
 
 # Merge scATAC
 
+### **Seurat:: [Merging Objects](https://satijalab.org/signac/articles/merging.html)**
+
+```
+library(Signac)
+library(Seurat)
+library(GenomicRanges)
+library(future)
+#-----------------
+plan("multiprocess", workers = 2)
+
+p1<-read.csv("/Users/apple/Desktop/from-server/CSV/L1-peak-df.csv")
+p1$X<-NULL
+p1$C1<-NULL
+p1$C2<-NULL
+
+g1<-makeGRangesFromDataFrame(p1)
+#-----------------
+p2<-read.csv("/Users/apple/Desktop/from-server/CSV/L2-peak-df.csv")
+p2$X<-NULL
+p2$C1<-NULL
+p2$C2<-NULL
+
+g2<-makeGRangesFromDataFrame(p2)
+#-----------------
+combined.peaks <- reduce(x = c(g1,g2))
+#-----------------
+s1<-read.table(
+  file = "/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/Library_20190731_001_singlecell.csv",
+  stringsAsFactors = FALSE,
+  sep = ",",
+  header = TRUE,
+  row.names = 1
+)[-1, ]
+dim(s1)
+s1<-s1[s1$passed_filters > 100, ]
+
+#-----------------
+s2<-read.table(
+  file = "/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/Library_20190731_002_singlecell.csv",
+  stringsAsFactors = FALSE,
+  sep = ",",
+  header = TRUE,
+  row.names = 1
+)[-1, ]
+dim(s2)
+s2<-s2[s2$passed_filters > 100, ]
+
+#-----------------
+f1 <- CreateFragmentObject(
+  path = "/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/Library_20190731_001_fragments.tsv.gz",
+  cells = rownames(s1)
+)
+#-----------------
+f2 <- CreateFragmentObject(
+  path = "/Users/apple/Downloads/Master_Research/data/Cardiomyocyte/Library_20190731_002_fragments.tsv.gz",
+  cells = rownames(s2)
+)
+#-----------------
+counts1<-FeatureMatrix(
+  fragments = f1,
+  features = combined.peaks,
+  cells = rownames(s1)
+)
+
+dim(counts1) # 348693  68435
+#-----------------
+counts2<-FeatureMatrix(
+  fragments = f2,
+  features = combined.peaks,
+  cells = rownames(s2)
+)
+
+dim(counts2)
+
+
+#-----------------
+atac1_assay <- CreateChromatinAssay(counts1, fragments = f1)
+atac1 <- CreateSeuratObject(atac1_assay, assay = "ATAC")
+
+# 348693 features across 68435 samples within 1 assay 
+
+
+#-----------------
+atac2_assay <- CreateChromatinAssay(counts2, fragments = f2)
+atac2 <- CreateSeuratObject(atac2_assay, assay = "ATAC")
+
+# 348693 features across 38799 samples within 1 assay 
+
+#-----------------
+
+atac1$dataset <- 'WT'
+atac2$dataset <- 'KD'
+
+combined <- merge(
+  x = atac1,
+  y = atac2,
+  add.cell.ids = c("WT","KD")
+)
+# 348693 features across 107234 samples within 1 assay 
+
+combined[["ATAC"]]
+#-----------------
+combined <- RunTFIDF(combined)
+combined <- FindTopFeatures(combined, min.cutoff = 20)
+combined <- RunSVD(combined)
+combined <- RunUMAP(combined, dims = 2:50, reduction = 'lsi')
+
+
+DimPlot(combined, group.by = 'dataset')
+
+CoveragePlot(
+  object = combined,
+  group.by = 'dataset',
+  region = "chr1-569860-570219"
+)
+#-----------------
+saveRDS(combined,"Combined-atac.Seurat.rds")
+```
+
+
+### Merge by-hand
+
 ```
 # -----------------#-----------------
 # Pmat:: 1. make a csv file for scie-2-gene anno.
